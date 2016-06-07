@@ -8,5 +8,9 @@ TODO
 - XML
 - .sql création de la table
 - .sql population de la table
-- server "Annonce"
-- client "Annonce" + recherche sur les annonces
+- Gestion Annonces côté server et côté client
+
+DONE 
+
+- Gestion des catégories côté server et client
+- Affichage graphique (template/header/footer)
