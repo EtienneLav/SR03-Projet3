@@ -1,0 +1,49 @@
+
+<annuaire>
+	<catégorie id= 1 nom="voitures">
+		<annonce >
+			<id>1</id>
+			<nom>206</nom>
+			<adresse>
+				<id>1</id>
+				<numero>10</numero>
+				<rue>Zinédine Zidane</rue>
+				<ville>Compy</ville>
+				<codePostal>60200</codePostal>
+			</adresse>
+			<telephone>
+				060011223344
+			</telephone>
+		</annonce>
+		<annonce >
+			<id>2</id>
+			<nom>306</nom>
+			<adresse>
+				<id>2</id>
+				<numero>20</numero>
+				<rue>Pas d'inspi</rue>
+				<ville>Compy</ville>
+				<codePostal>60200</codePostal>
+			</adresse>
+			<telephone>
+				060011223345
+			</telephone>
+		</annonce>
+		<annonce >
+			<id>4</id>
+			<nom>406</nom>
+			<adresse>
+				<id>1</id>
+				<numero>10</numero>
+				<rue>Zinédine Zidane</rue>
+				<ville>Compy</ville>
+				<codePostal>60200</codePostal>
+			</adresse>
+			<telephone>
+				060011223344
+			</telephone>
+		</annonce>
+	</catégorie>
+	<catégorie id= 2 nom="informatique">
+	</catégorie>
+</annuaire>
