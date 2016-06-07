@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from WebServiceCategorieService WSDL service -->
+
+  <service name="WebServiceCategorie" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://WebService"/>
+      <parameter name="wsdlServiceElement" value="WebServiceCategorieService"/>
+      <parameter name="schemaQualified" value="http://beans,http://WebService"/>
+      <parameter name="wsdlServicePort" value="WebServiceCategorie"/>
+      <parameter name="className" value="WebService.WebServiceCategorie"/>
+      <parameter name="wsdlPortType" value="WebServiceCategorie"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://beans" name="getCategories" qname="operNS:getCategories" returnQName="retNS:getCategoriesReturn" returnType="rtns:Categorie" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="modifyCategorie" qname="operNS:modifyCategorie" returnQName="retNS:modifyCategorieReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://beans" name="getCategorie" qname="operNS:getCategorie" returnQName="retNS:getCategorieReturn" returnType="rtns:Categorie" soapAction="">
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:categorie_id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="delCategorie" qname="operNS:delCategorie" returnQName="retNS:delCategorieReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:categorie_id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://beans" name="newCategorie" qname="operNS:newCategorie" returnQName="retNS:newCategorieReturn" returnType="rtns:Categorie" soapAction="">
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="modifyCategorie getCategorie getCategories delCategorie newCategorie"/>
+
+      <typeMapping xmlns:ns="http://beans" qname="ns:Categorie" type="java:beans.Categorie" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
