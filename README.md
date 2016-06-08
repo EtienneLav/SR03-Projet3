@@ -5,12 +5,14 @@ Projet n°3 de SR03 : réalisation d'un webservice SOAP en JAVA EE sous Eclipse 
 
 TODO
 
-- XML
 - .sql création de la table
 - .sql population de la table
-- Gestion Annonces côté server et côté client
+- Gestion des différents type de recherche côté server et client
 
 DONE 
 
 - Gestion des catégories côté server et client
 - Affichage graphique (template/header/footer)
+- XML + Arbre (bien formés)
+- Gestion Annonces côté server et côté client
+- Marshalling only XML sur tous les échanges server --> client
