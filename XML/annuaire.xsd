@@ -1,47 +1,39 @@
 <?xml version = "1.0" encoding="UTF-8" standalone="yes" ?>
-<xsd:schema xmlns:xsd="http://www.w3/org/2001/XMLSchema">
-	
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<xsd:element name="annuaire">
 		<xsd:complexType>
 		<xsd:sequence>
 
-			<xsd:element name="catégorie">
+			<xsd:element name="categorie" maxOccurs="unbounded">
 				<xsd:complexType>
 				<xsd:sequence>
-					<xsd:element name="annonce">
+					<xsd:element name="annonce" maxOccurs="unbounded">
 						<xsd:complexType>
 						<xsd:sequence>		
 					
-							<xsd:element name="id" type="xsd:long"></xsd:element>
+							<xsd:element name="id" type="xsd:string"></xsd:element>
 							<xsd:element name="nom" type="xsd:string"></xsd:element>
 							<xsd:element name="adresse">
 								<xsd:complexType>
 								<xsd:sequence>
-									<xsd:element name="id" type="xsd:long"></xsd:element>
-									<xsd:element name="numero" type="xsd:int"></xsd:element>
+									<xsd:element name="id" type="xsd:string"></xsd:element>
+									<xsd:element name="numero" type="xsd:string"></xsd:element>
 									<xsd:element name="rue" type="xsd:string"></xsd:element>
 									<xsd:element name="ville" type="xsd:string"></xsd:element>
-									<xsd:element name="codePostal" type="xsd:int"></xsd:element>
+									<xsd:element name="codePostal" type="xsd:string"></xsd:element>
 								</xsd:sequence>
 								</xsd:complexType>
 							</xsd:element>
-							<xsd:element name="telephone" type="xsd:long"></xsd:element>
-
+							<xsd:element name="telephone" type="xsd:string"></xsd:element>
 						</xsd:sequence>
-						
 						</xsd:complexType>
-
 					</xsd:element>	
-
-
 				</xsd:sequence>
-				<xsd:attribute name="id" type="xsd:long"></xsd:attribute>
+				<xsd:attribute name="id" type="xsd:string"></xsd:attribute>
 				<xsd:attribute name="nom" type="xsd:string"></xsd:attribute>
 				</xsd:complexType>
 			</xsd:element>
-
 		</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
-
 </xsd:schema>
