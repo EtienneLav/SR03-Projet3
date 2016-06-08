@@ -28,4 +28,24 @@
     <url-pattern>/categorie/details</url-pattern>
   </servlet-mapping>
   
+  
+  <servlet>
+    <servlet-name>Listing_AddingAnnonce</servlet-name>
+    <servlet-class>AnnonceGestion.Listing_Editing</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Listing_AddingAnnonce</servlet-name>
+    <url-pattern>/annonce/liste</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>EditingAnnonce</servlet-name>
+    <servlet-class>AnnonceGestion.Editing</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditingAnnonce</servlet-name>
+    <url-pattern>/annonce/details</url-pattern>
+  </servlet-mapping>
+  
+  
+  
 </web-app>
