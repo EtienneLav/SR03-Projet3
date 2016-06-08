@@ -2,14 +2,45 @@
 
   <!-- Services from WebServiceAnnonceService WSDL service -->
 
-  <service name="WebServiceAnnonce" provider="java:RPC" style="document" use="encoded">
+  <service name="WebServiceAnnonce" provider="java:RPC" style="wrapped" use="literal">
       <parameter name="wsdlTargetNamespace" value="http://WebService"/>
       <parameter name="wsdlServiceElement" value="WebServiceAnnonceService"/>
+      <parameter name="schemaQualified" value="http://WebService"/>
       <parameter name="wsdlServicePort" value="WebServiceAnnonce"/>
       <parameter name="className" value="WebService.WebServiceAnnonce"/>
       <parameter name="wsdlPortType" value="WebServiceAnnonce"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <parameter name="allowedMethods" value="*"/>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="createAnnonce" qname="operNS:createAnnonce" returnQName="retNS:createAnnonceReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:category_id" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:telephone" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numero_adresse" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:rue_adresse" type="tns:string"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:codePostal_adresse" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ville_adresse" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="deleteAnnonce" qname="operNS:deleteAnnonce" returnQName="retNS:deleteAnnonceReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAnnoncesCat" qname="operNS:getAnnoncesCat" returnQName="retNS:getAnnoncesCatReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:categorie_id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAnnonceByID" qname="operNS:getAnnonceByID" returnQName="retNS:getAnnonceByIDReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAnnonces" qname="operNS:getAnnonces" returnQName="retNS:getAnnoncesReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="modifyAnnonce" qname="operNS:modifyAnnonce" returnQName="retNS:modifyAnnonceReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:annonce_id" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:category_id" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:telephone" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numero_adresse" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:rue_adresse" type="tns:string"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:codePostal_adresse" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:ville_adresse" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="getAnnoncesCat deleteAnnonce getAnnonces createAnnonce modifyAnnonce getAnnonceByID"/>
 
   </service>
 </deployment>

@@ -23,17 +23,22 @@ public class AnnonceDAO extends DAO<Annonce> {
 		      if(result.first()){
 		        long id = result.getLong("id") + 1;
 		        
-				PreparedStatement prepare = this.connect.prepareStatement("INSERT INTO Annonce (id, categorie_id, nom, adresse, telephone) VALUES(?, ?, ?, ?, ?)");
-				prepare.setLong(1, id);
-				prepare.setLong(2, categorieId);
-				prepare.setString(3, annonce.getNom());
-				prepare.setLong(4, annonce.getAdresse().getId());
-				prepare.setLong(5, annonce.getTelephone());
-				prepare.executeUpdate();
-				
-				// Création du niveau inférieur.
+		        // Création du niveau inférieur.
 		    	AdresseDAO adresseDAO = (AdresseDAO) DAOFactory.getAdresseDAO();
-		    	adresseDAO.create(annonce.getAdresse());
+		    	Adresse adresse_created = adresseDAO.create(annonce.getAdresse());
+		    	
+				PreparedStatement prepare = this.connect.prepareStatement("INSERT INTO Annonce (id, nom, adresse, telephone, categorie_id) VALUES(?, ?, ?, ?, ?)");
+				prepare.setLong(1, id);
+				prepare.setString(2, annonce.getNom());
+				prepare.setLong(3, adresse_created.getId());
+				prepare.setLong(4, annonce.getTelephone());
+				prepare.setLong(5, categorieId);
+				
+				if(prepare.executeUpdate() >=1)
+					System.out.println("creation ok");
+				else
+					System.out.println("creation ratée");
+				
 		    	
 				annonce = this.find(id);	
 			}	
@@ -53,8 +58,12 @@ public class AnnonceDAO extends DAO<Annonce> {
 		    	AdresseDAO adresseDAO = (AdresseDAO) DAOFactory.getAdresseDAO();
 		    	Adresse adresse = adresseDAO.find(result.getLong("adresse"));
 		    	
+		    	
+		    	System.out.print("id du tableau de requete " +result.getLong("categorie_id"));
 		    	CategorieDAO categorieDAO = (CategorieDAO) DAOFactory.getCategorieDAO();
-		    	Categorie categorie = categorieDAO.find(result.getLong("categorie_id"));
+		    	Categorie categorie = categorieDAO.find(result.getInt("categorie_id"));
+		    	System.out.println("categorie_id "+categorie.getId());
+		    	System.out.println("categorie_nom "+categorie.getNom());
 		    	
 		    	annonce = new Annonce();
 		    	annonce.setId(id);
@@ -69,6 +78,27 @@ public class AnnonceDAO extends DAO<Annonce> {
 	    }
 		
 		return annonce;
+	}
+	
+	public ArrayList<Annonce> findAll(){
+		ArrayList<Annonce> annonces = new ArrayList<Annonce>();
+		try {
+            ResultSet result = this.connect
+                                   .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT * FROM Annonce ORDER BY id ASC"
+                                             );
+            while(result.next()){
+            	Annonce annonce = this.find(result.getLong("id"));
+            	annonces.add(annonce);
+            }
+	    } catch (SQLException e) {
+	            e.printStackTrace();
+	    }
+		
+		return annonces;
 	}
 	
 	public Annonce findByAdress(long numero, String rue, String ville, long codePostal){
@@ -217,6 +247,26 @@ public class AnnonceDAO extends DAO<Annonce> {
                     ).executeUpdate(
                     	"DELETE FROM Annonce"+
                                 	" WHERE id = " + annonce.getId()                        		
+                    ) >=1)
+            	return true;
+            else 
+            	return false;
+	    } catch (SQLException e) {
+	            e.printStackTrace();
+	    }
+		return true;
+	}
+	
+	public boolean removeAnnonce(long id){
+		try {
+			
+            if (this    .connect
+                	.createStatement(
+                         ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                         ResultSet.CONCUR_UPDATABLE
+                    ).executeUpdate(
+                    	"DELETE FROM Annonce"+
+                                	" WHERE id = " + id                 		
                     ) >=1)
             	return true;
             else 

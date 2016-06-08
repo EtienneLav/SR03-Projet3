@@ -63,7 +63,7 @@ public class AdresseDAO extends DAO<Adresse> {
 		try {
 		    ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)
 		    		.executeQuery("SELECT * FROM Adresse WHERE numero = " + numero + " AND rue= '" + rue + "' AND ville='" + ville + "' AND codePostal = " + codePostal);
-		    if(result.first())
+		    if(result.next()){
 		    	
 		    	adresse = new Adresse();
 		    	adresse.setId(result.getInt("id"));
@@ -71,13 +71,15 @@ public class AdresseDAO extends DAO<Adresse> {
 		    	adresse.setRue(result.getString("rue"));
 		    	adresse.setVille(result.getString("ville"));
 		    	adresse.setCodePostal(result.getInt("codePostal"));
-
-		    
+		    	return adresse;
+		    }
+		    	else 
+		    		return null;
 		    } catch (SQLException e) {
 		            e.printStackTrace();
 		    }
-		
-		   return adresse;
+		return null;
+		   
 	}
 
 	public  Adresse update(Adresse adresse){
