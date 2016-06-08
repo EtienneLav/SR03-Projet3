@@ -24,7 +24,7 @@
 									<xsd:element name="rue" type="xsd:string"></xsd:element>
 									<xsd:element name="ville" type="xsd:string"></xsd:element>
 									<xsd:element name="codePostal" type="xsd:int"></xsd:element>
-								</xsdsequence>
+								</xsd:sequence>
 								</xsd:complexType>
 							</xsd:element>
 							<xsd:element name="telephone" type="xsd:long">
