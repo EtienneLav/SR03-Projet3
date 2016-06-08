@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://WebService" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://WebService" xmlns:intf="http://WebService" xmlns:tns1="http://beans" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://WebService" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://WebService" xmlns:intf="http://WebService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://WebService" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://beans"/>
    <element name="getCategories">
     <complexType/>
    </element>
    <element name="getCategoriesResponse">
     <complexType>
      <sequence>
-      <element maxOccurs="unbounded" name="getCategoriesReturn" type="tns1:Categorie"/>
+      <element name="getCategoriesReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -40,7 +39,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="getCategorieResponse">
     <complexType>
      <sequence>
-      <element name="getCategorieReturn" type="tns1:Categorie"/>
+      <element name="getCategorieReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -68,18 +67,10 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="newCategorieResponse">
     <complexType>
      <sequence>
-      <element name="newCategorieReturn" type="tns1:Categorie"/>
+      <element name="newCategorieReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-  </schema>
-  <schema elementFormDefault="qualified" targetNamespace="http://beans" xmlns="http://www.w3.org/2001/XMLSchema">
-   <complexType name="Categorie">
-    <sequence>
-     <element name="id" type="xsd:long"/>
-     <element name="nom" nillable="true" type="xsd:string"/>
-    </sequence>
-   </complexType>
   </schema>
  </wsdl:types>
 

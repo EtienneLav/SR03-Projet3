@@ -1,6 +1,10 @@
 package beans;
-import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Categorie {
 	private long id;
 	private String nom;
@@ -16,6 +20,7 @@ public class Categorie {
         return id;
     }
 	
+	@XmlAttribute
 	public Categorie setId(long id) {
         this.id = id;
         return this;
@@ -25,6 +30,7 @@ public class Categorie {
         return nom;
     }
 	
+	@XmlAttribute
 	public Categorie setNom(String nom) {
         this.nom = nom;
         return this;

@@ -44,13 +44,19 @@ public class WebServiceCategorieProxy implements WebService.WebServiceCategorie 
     return webServiceCategorie;
   }
   
-  public beans.Categorie[] getCategories() throws java.rmi.RemoteException{
+  public java.lang.String getCategories() throws java.rmi.RemoteException{
     if (webServiceCategorie == null)
       _initWebServiceCategorieProxy();
     return webServiceCategorie.getCategories();
   }
   
-  public beans.Categorie getCategorie(int categorie_id) throws java.rmi.RemoteException{
+  public boolean modifyCategorie(int id, java.lang.String nom) throws java.rmi.RemoteException{
+    if (webServiceCategorie == null)
+      _initWebServiceCategorieProxy();
+    return webServiceCategorie.modifyCategorie(id, nom);
+  }
+  
+  public java.lang.String getCategorie(int categorie_id) throws java.rmi.RemoteException{
     if (webServiceCategorie == null)
       _initWebServiceCategorieProxy();
     return webServiceCategorie.getCategorie(categorie_id);
@@ -62,16 +68,10 @@ public class WebServiceCategorieProxy implements WebService.WebServiceCategorie 
     return webServiceCategorie.delCategorie(categorie_id);
   }
   
-  public beans.Categorie newCategorie(java.lang.String nom) throws java.rmi.RemoteException{
+  public java.lang.String newCategorie(java.lang.String nom) throws java.rmi.RemoteException{
     if (webServiceCategorie == null)
       _initWebServiceCategorieProxy();
     return webServiceCategorie.newCategorie(nom);
-  }
-  
-  public boolean modifyCategorie(int id, java.lang.String nom) throws java.rmi.RemoteException{
-    if (webServiceCategorie == null)
-      _initWebServiceCategorieProxy();
-    return webServiceCategorie.modifyCategorie(id, nom);
   }
   
   
