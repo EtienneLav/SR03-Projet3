@@ -46,14 +46,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="/~sr03p016/projet1/formulaire.php">Projet 1</a>
+                        <a href="/SR03-TestClientCategorie/annonce/liste">Liste des annonces</a>
                     </li>
                     <li>
-                        <a href="#">Projet 2</a>
+                        <a href="/SR03-TestClientCategorie/categorie/liste">Liste des catégories</a>
                     </li>
-                    <li>
-                        <a href="#">Projet 3</a>
-                    </li>
+                    
             </div>
         </div>
     </nav>
