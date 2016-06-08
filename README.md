@@ -7,6 +7,9 @@ TODO
 
 - .sql création de la table
 - .sql population de la table
+
+DOING
+
 - Gestion des différents type de recherche côté server et client
 
 DONE 
