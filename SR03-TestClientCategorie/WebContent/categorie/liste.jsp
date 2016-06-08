@@ -1,6 +1,8 @@
 
 <%@ include file="../WEB-INF/header.jsp" %>
 <%@ page import="beans.*"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <section>
 	
         <div class="row">
@@ -26,17 +28,18 @@
 						    <th style="text-align: center;">Suppression</th>
 						</tr>
 					  		 <% 
-					     Categorie[] categorie_array = (Categorie[])request.getAttribute("liste_categorie");
+					  		HashMap<Integer,String> categorie_array = (HashMap<Integer,String>) request.getAttribute("liste_categories");
 					  	
-					  	 
-					  		for (int i = 0; i < categorie_array.length; i++) {
-								System.out.println("ID : "+categorie_array[i].getId()+" Nom : "+categorie_array[i].getNom());
+					  		for (Map.Entry<Integer, String> entry : categorie_array.entrySet()) {
+					  		    int id = entry.getKey();
+					  		    String nom = entry.getValue();
+					  	
 					     %>
 						  <tr>
-						  	<td align="center"><% out.print(categorie_array[i].getId()); %></th>
-						    <td align="center"><% out.print(categorie_array[i].getNom()); %></th>
-						  	<td align="center"><a href="/SR03-TestClientCategorie/categorie/details?categorie_id=<% out.print(categorie_array[i].getId()); %>""><button type="button" class="btn btn-info">Détails</button></a></td>
-						  	<td align="center"><a href="/SR03-TestClientCategorie/categorie/liste?categorie_id=<% out.print(categorie_array[i].getId()); %>"><button type="button" class="btn btn-warning">Supprimer</button></a></td>
+						  	<td align="center"><% out.print(id); %></th>
+						    <td align="center"><% out.print(nom); %></th>
+						  	<td align="center"><a href="/SR03-TestClientCategorie/categorie/details?categorie_id=<% out.print(id); %>""><button type="button" class="btn btn-info">Détails</button></a></td>
+						  	<td align="center"><a href="/SR03-TestClientCategorie/categorie/liste?categorie_id=<% out.print(id); %>"><button type="button" class="btn btn-warning">Supprimer</button></a></td>
 						  </tr>
 						  <% } %>
 						</table>

@@ -8,9 +8,9 @@
 package WebService;
 
 public interface WebServiceCategorie extends java.rmi.Remote {
-    public beans.Categorie[] getCategories() throws java.rmi.RemoteException;
+    public java.lang.String getCategories() throws java.rmi.RemoteException;
     public boolean modifyCategorie(int id, java.lang.String nom) throws java.rmi.RemoteException;
-    public beans.Categorie getCategorie(int categorie_id) throws java.rmi.RemoteException;
+    public java.lang.String getCategorie(int categorie_id) throws java.rmi.RemoteException;
     public boolean delCategorie(int categorie_id) throws java.rmi.RemoteException;
-    public beans.Categorie newCategorie(java.lang.String nom) throws java.rmi.RemoteException;
+    public java.lang.String newCategorie(java.lang.String nom) throws java.rmi.RemoteException;
 }

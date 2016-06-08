@@ -33,38 +33,56 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="WebServiceCategorie" provider="java:RPC" style="wrapped" use="literal">
-  <ns3:operation name="getCategories" qname="ns1:getCategories" returnQName="ns1:getCategoriesReturn" returnType="ns2:Categorie" soapAction="" xmlns:ns1="http://WebService" xmlns:ns2="http://beans" xmlns:ns3="http://xml.apache.org/axis/wsdd/"/>
-  <ns1:operation name="modifyCategorie" qname="ns3:modifyCategorie" returnQName="ns3:modifyCategorieReturn" returnType="xsd:boolean" soapAction="" xmlns:ns3="http://WebService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns3:id" type="xsd:int"/>
-   <ns1:parameter qname="ns3:nom" type="xsd:string"/>
+  <ns2:operation name="getCategories" qname="ns1:getCategories" returnQName="ns1:getCategoriesReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://WebService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
+  <ns1:operation name="modifyCategorie" qname="ns2:modifyCategorie" returnQName="ns2:modifyCategorieReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://WebService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:id" type="xsd:int"/>
+   <ns1:parameter qname="ns2:nom" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="getCategorie" qname="ns4:getCategorie" returnQName="ns4:getCategorieReturn" returnType="ns5:Categorie" soapAction="" xmlns:ns4="http://WebService" xmlns:ns5="http://beans">
-   <ns1:parameter qname="ns4:categorie_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getCategorie" qname="ns3:getCategorie" returnQName="ns3:getCategorieReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://WebService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:categorie_id" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="delCategorie" qname="ns6:delCategorie" returnQName="ns6:delCategorieReturn" returnType="xsd:boolean" soapAction="" xmlns:ns6="http://WebService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns6:categorie_id" type="xsd:int"/>
+  <ns1:operation name="delCategorie" qname="ns4:delCategorie" returnQName="ns4:delCategorieReturn" returnType="xsd:boolean" soapAction="" xmlns:ns4="http://WebService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:categorie_id" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="newCategorie" qname="ns7:newCategorie" returnQName="ns7:newCategorieReturn" returnType="ns8:Categorie" soapAction="" xmlns:ns7="http://WebService" xmlns:ns8="http://beans">
-   <ns1:parameter qname="ns7:nom" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="newCategorie" qname="ns5:newCategorie" returnQName="ns5:newCategorieReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://WebService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:nom" type="xsd:string"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="modifyCategorie getCategorie getCategories delCategorie newCategorie"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="WebServiceCategorie"/>
   <ns1:parameter name="className" value="WebService.WebServiceCategorie"/>
   <ns1:parameter name="wsdlServicePort" value="WebServiceCategorie"/>
-  <ns1:parameter name="schemaQualified" value="http://beans,http://WebService"/>
+  <ns1:parameter name="schemaQualified" value="http://WebService"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://WebService"/>
   <ns1:parameter name="wsdlServiceElement" value="WebServiceCategorieService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:Categorie" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:beans.Categorie" xmlns:ns9="http://beans"/>
  </ns1:service>
- <ns1:service name="WebServiceAnnonce" provider="java:RPC" style="document" use="literal">
-  <ns1:parameter name="allowedMethods" value="*"/>
-  <ns1:parameter name="wsdlPortType" value="WebServiceAnnonce"/>
+ <ns1:service name="WebServiceAnnonce" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="createAnnonce" qname="ns6:createAnnonce" returnQName="ns6:createAnnonceReturn" returnType="ns7:Annonce" soapAction="" xmlns:ns6="http://WebService" xmlns:ns7="http://beans">
+   <ns1:parameter qname="ns6:annonce" type="ns7:Annonce"/>
+   <ns1:parameter qname="ns6:categorie_id" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns6:add" type="ns7:Adresse"/>
+  </ns1:operation>
+  <ns1:operation name="deleteAnnonce" qname="ns8:deleteAnnonce" returnQName="ns8:deleteAnnonceReturn" returnType="xsd:boolean" soapAction="" xmlns:ns8="http://WebService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:id" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="getAnnoncesCat" qname="ns9:getAnnoncesCat" returnQName="ns9:getAnnoncesCatReturn" returnType="ns10:Annonce" soapAction="" xmlns:ns10="http://beans" xmlns:ns9="http://WebService">
+   <ns1:parameter qname="ns9:categorie_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getAnnonceByID" qname="ns11:getAnnonceByID" returnQName="ns11:getAnnonceByIDReturn" returnType="ns12:Annonce" soapAction="" xmlns:ns11="http://WebService" xmlns:ns12="http://beans">
+   <ns1:parameter qname="ns11:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getAnnonces" qname="ns13:getAnnonces" returnQName="ns13:getAnnoncesReturn" returnType="ns14:Annonce" soapAction="" xmlns:ns13="http://WebService" xmlns:ns14="http://beans"/>
+  <ns1:parameter name="allowedMethods" value="getAnnoncesCat deleteAnnonce getAnnonces createAnnonce getAnnonceByID"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="wsdlServicePort" value="WebServiceAnnonce"/>
+  <ns1:parameter name="wsdlPortType" value="WebServiceAnnonce"/>
   <ns1:parameter name="className" value="WebService.WebServiceAnnonce"/>
+  <ns1:parameter name="wsdlServicePort" value="WebServiceAnnonce"/>
+  <ns1:parameter name="schemaQualified" value="http://beans,http://WebService"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://WebService"/>
   <ns1:parameter name="wsdlServiceElement" value="WebServiceAnnonceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns15:Adresse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:beans.Adresse" xmlns:ns15="http://beans"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns16:Annonce" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:beans.Annonce" xmlns:ns16="http://beans"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns17:Categorie" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:beans.Categorie" xmlns:ns17="http://beans"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

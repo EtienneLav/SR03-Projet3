@@ -22,12 +22,11 @@
 				      <form class="form-inline" method="POST" action ="/SR03-TestClientCategorie/categorie/details">
 						<table class="table table-hover" style="width:100%">
 						  <tr>
-						  <th>
-						    <th style="text-align: center;">Nom</th>
+						  	<th></th>
+						    <th style="text-align: left;">Nom</th>
 						</tr>
-					  		 <% 
-					     Categorie categorie = (Categorie)request.getAttribute("categorie");
-					  	%>
+					  		 <% String categorie_name = (String) request.getAttribute("nom_categorie");%>
+					  		<%int categorie_id = (int) request.getAttribute("id_categorie"); %>
 					  	 
 						<tr>
 							<td style=" border-top: none;">
@@ -39,8 +38,8 @@
 				  			<td style=" border-top: none;">
 				  				<div class="form-group">
 				    				<label for="inputName" class="sr-only"></label>
-				    				<input name ="name" type="name" class="form-control" id="inputName placeholder="<% out.print(categorie.getNom()); %>" value="<% out.print(categorie.getNom()); %>">
-				  					<input name ="id" type="hidden" class="form-control" id="inputId" placeholder="<% out.print(categorie.getId()); %>" value="<% out.print(categorie.getId()); %>">
+				    				<input name ="name" type="name" class="form-control" id="inputName placeholder="<% out.print(categorie_name); %>" value="<% out.print(categorie_name); %>">
+				  					<input name ="id" type="hidden" class="form-control" id="inputId" placeholder="<% out.print(categorie_id); %>" value="<% out.print(categorie_id); %>">
 				  				</div>
 				  			</td>
 						</tr>
@@ -50,7 +49,7 @@
 			  				</td>
 		  				</tr>
 						</table>
-						
+						</form>
 				      </div>
 				    </div>
 				  </div>
