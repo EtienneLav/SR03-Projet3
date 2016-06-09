@@ -24,7 +24,8 @@
 							<select name="categorie_id" class="form-control" id="sel1">
 								<option selected value="0">Toutes</option>
 								<%
-									HashMap<Integer, String> categorie_array = (HashMap<Integer, String>) request.getAttribute("liste_categories");
+									HashMap<Integer, String> categorie_array = (HashMap<Integer, String>) request
+											.getAttribute("liste_categories");
 
 									for (Map.Entry<Integer, String> entry : categorie_array.entrySet()) {
 										int id = entry.getKey();
@@ -102,9 +103,11 @@
 					</td>
 					<td style="border-top: none;">
 						<div class="form-group">
+						
 							<select name="est_recent" class="form-control" id="sel1">
 								<option selected value="0">Non</option>
 								<option value="1">Oui</option>
+							</select>
 						</div>
 					</td>
 				</tr>

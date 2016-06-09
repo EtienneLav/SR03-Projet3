@@ -69,32 +69,32 @@
 											out.print(id_current);
 										%>
 									
-									</th>
+									</td>
 									<td align="center">
 										<%
 											out.print(nom_current);
 										%>
 									
-									</th>
+									</td>
 									<td align="center">
 										<%
 											out.print(tel_current);
 										%>
 									
-									</th>
+									</td>
 									<td align="center">
 										<%
 											out.print(categorie_nom_current);
 										%>
 									
-									</th>
+									</td>
 									<td align="center">
 										<%
 											out.print(adresse_numero_current + ", rue " + categorie_rue_current + " "
 															+ adresse_code_postal_current + " " + categorie_ville_current);
 										%>
 									
-									</th>
+									</td>
 								</tr>
 								<%
 									}

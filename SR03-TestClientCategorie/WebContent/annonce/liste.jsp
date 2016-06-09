@@ -32,54 +32,65 @@
 									<th style="text-align: center;">Modificiation</th>
 									<th style="text-align: center;">Suppression</th>
 								</tr>
-								<% 
-					  		 
-					  		ArrayList<Integer> id_list = (ArrayList<Integer>) request.getAttribute("liste_id");
-							ArrayList<String> nom_list = (ArrayList<String>) request.getAttribute("liste_noms");
-							ArrayList<Integer> tel_list = (ArrayList<Integer>) request.getAttribute("liste_tels");
-							ArrayList<Integer> adresse_id_list = (ArrayList<Integer>) request.getAttribute("liste_adresse_id");
-					       
-							ArrayList<String> categorie_nom_list = (ArrayList<String>) request.getAttribute("liste_categorie_nom");
-							ArrayList<Integer> categorie_id_list = (ArrayList<Integer>) request.getAttribute("liste_categorie_id");
-					  	 
-							for (int i = 0 ; i < id_list.size() ; i++) {
-						     	int id_current = (int) id_list.get(i);
-						     	String nom_current = (String)  nom_list.get(i);
-						     	int tel_current = (int) tel_list.get(i);
-						     	int adresse_id_current = (int) adresse_id_list.get(i);
-						     	String categorie_nom_current = (String) categorie_nom_list.get(i);
-						     	int categorie_id_current = (int) categorie_id_list.get(i);
-					     %>
+								<%
+									ArrayList<Integer> id_list = (ArrayList<Integer>) request.getAttribute("liste_id");
+									ArrayList<String> nom_list = (ArrayList<String>) request.getAttribute("liste_noms");
+									ArrayList<Integer> tel_list = (ArrayList<Integer>) request.getAttribute("liste_tels");
+									ArrayList<Integer> adresse_id_list = (ArrayList<Integer>) request.getAttribute("liste_adresse_id");
+
+									ArrayList<String> categorie_nom_list = (ArrayList<String>) request.getAttribute("liste_categorie_nom");
+									ArrayList<Integer> categorie_id_list = (ArrayList<Integer>) request.getAttribute("liste_categorie_id");
+
+									for (int i = 0; i < id_list.size(); i++) {
+										int id_current = (int) id_list.get(i);
+										String nom_current = (String) nom_list.get(i);
+										int tel_current = (int) tel_list.get(i);
+										int adresse_id_current = (int) adresse_id_list.get(i);
+										String categorie_nom_current = (String) categorie_nom_list.get(i);
+										int categorie_id_current = (int) categorie_id_list.get(i);
+								%>
 								<tr>
 									<td align="center">
-										<% out.print(id_current); %>
+										<%
+											out.print(id_current);
+										%>
 									
-									</th>
+									</td>
 									<td align="center">
-										<% out.print(nom_current); %>
+										<%
+											out.print(nom_current);
+										%>
 									
-									</th>
+									</td>
 									<td align="center">
-										<% out.print(tel_current); %>
+										<%
+											out.print(tel_current);
+										%>
 									
-									</th>
+									</td>
 									<td align="center"><a
-										href="/SR03-TestClientCategorie/categorie/details?categorie_id=<% out.print(categorie_id_current); %>"">
-											<% out.print(categorie_nom_current); %>
+										href="/SR03-TestClientCategorie/categorie/details?categorie_id=<%out.print(categorie_id_current);%>"">
+											<%
+												out.print(categorie_nom_current);
+											%>
 									</a>
-									</th>
+									</td>
 									<td align="center">
-										<% out.print(adresse_id_current); %>
+										<%
+											out.print(adresse_id_current);
+										%>
 									
-									</th>
+									</td>
 									<td align="center"><a
-										href="/SR03-TestClientCategorie/annonce/details?annonce_id=<% out.print(id_current); %>""><button
+										href="/SR03-TestClientCategorie/annonce/details?annonce_id=<%out.print(id_current);%>""><button
 												type="button" class="btn btn-info">Détails</button></a></td>
 									<td align="center"><a
-										href="/SR03-TestClientCategorie/annonce/liste?annonce_id=<% out.print(id_current); %>"><button
+										href="/SR03-TestClientCategorie/annonce/liste?annonce_id=<%out.print(id_current);%>"><button
 												type="button" class="btn btn-warning">Supprimer</button></a></td>
 								</tr>
-								<% } %>
+								<%
+									}
+								%>
 							</table>
 						</div>
 					</div>
@@ -113,7 +124,6 @@
 					</td>
 				</tr>
 
-				</tr>
 				<tr>
 
 					<td style="border-top: none;">
@@ -125,17 +135,22 @@
 					<td style="border-top: none;">
 						<div class="form-group">
 							<select name="categorie_id" class="form-control" id="sel1">
-								<% 		
-				    	HashMap<Integer,String> categorie_array = (HashMap<Integer,String>) request.getAttribute("liste_categories");
-					  	
-					  	for (Map.Entry<Integer, String> entry : categorie_array.entrySet()) {
-					  		int id = entry.getKey();
-					  		String nom = entry.getValue();
-					     %>
-								<option value="<% out.print(id);%>">
-									<%out.print(nom); %>
+								<%
+									HashMap<Integer, String> categorie_array = (HashMap<Integer, String>) request
+											.getAttribute("liste_categories");
+
+									for (Map.Entry<Integer, String> entry : categorie_array.entrySet()) {
+										int id = entry.getKey();
+										String nom = entry.getValue();
+								%>
+								<option value="<%out.print(id);%>">
+									<%
+										out.print(nom);
+									%>
 								</option>
-								<%} %>
+								<%
+									}
+								%>
 							</select>
 
 						</div>
@@ -205,8 +220,8 @@
 					<td style="border-top: none;">
 						<div class="form-group">
 							<label for="inputName" class="sr-only"></label> <input
-								name="code_postale" type="code_postale" class="form-control"
-								id="inputName" placeholder="code_postale" value="code postal">
+								name="code_postal" type="code_postal" class="form-control"
+								id="inputName" placeholder="code_postal" value="code postal">
 						</div>
 					</td>
 				</tr>

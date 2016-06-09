@@ -4,22 +4,79 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://WebService" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="getCategoriesReturn" type="xsd:string"/>
-   <element name="id" type="xsd:int"/>
-   <element name="nom" type="xsd:string"/>
-   <element name="modifyCategorieReturn" type="xsd:boolean"/>
-   <element name="categorie_id" type="xsd:int"/>
-   <element name="getCategorieReturn" type="xsd:string"/>
-   <element name="categorie_id1" type="xsd:int"/>
-   <element name="delCategorieReturn" type="xsd:boolean"/>
-   <element name="nom1" type="xsd:string"/>
-   <element name="newCategorieReturn" type="xsd:string"/>
+   <element name="getCategories">
+    <complexType/>
+   </element>
+   <element name="getCategoriesResponse">
+    <complexType>
+     <sequence>
+      <element name="getCategoriesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modifyCategorie">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+      <element name="nom" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modifyCategorieResponse">
+    <complexType>
+     <sequence>
+      <element name="modifyCategorieReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCategorie">
+    <complexType>
+     <sequence>
+      <element name="categorie_id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCategorieResponse">
+    <complexType>
+     <sequence>
+      <element name="getCategorieReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="delCategorie">
+    <complexType>
+     <sequence>
+      <element name="categorie_id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="delCategorieResponse">
+    <complexType>
+     <sequence>
+      <element name="delCategorieReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="newCategorie">
+    <complexType>
+     <sequence>
+      <element name="nom" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="newCategorieResponse">
+    <complexType>
+     <sequence>
+      <element name="newCategorieReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
  </wsdl:types>
 
    <wsdl:message name="getCategorieResponse">
 
-      <wsdl:part element="impl:getCategorieReturn" name="getCategorieReturn">
+      <wsdl:part element="impl:getCategorieResponse" name="parameters">
 
       </wsdl:part>
 
@@ -27,11 +84,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:message name="modifyCategorieRequest">
 
-      <wsdl:part element="impl:id" name="id">
-
-      </wsdl:part>
-
-      <wsdl:part element="impl:nom" name="nom">
+      <wsdl:part element="impl:modifyCategorie" name="parameters">
 
       </wsdl:part>
 
@@ -39,7 +92,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:message name="delCategorieRequest">
 
-      <wsdl:part element="impl:categorie_id1" name="categorie_id">
+      <wsdl:part element="impl:delCategorie" name="parameters">
 
       </wsdl:part>
 
@@ -47,7 +100,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:message name="newCategorieRequest">
 
-      <wsdl:part element="impl:nom1" name="nom">
+      <wsdl:part element="impl:newCategorie" name="parameters">
 
       </wsdl:part>
 
@@ -55,7 +108,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:message name="getCategoriesResponse">
 
-      <wsdl:part element="impl:getCategoriesReturn" name="getCategoriesReturn">
+      <wsdl:part element="impl:getCategoriesResponse" name="parameters">
 
       </wsdl:part>
 
@@ -63,7 +116,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:message name="newCategorieResponse">
 
-      <wsdl:part element="impl:newCategorieReturn" name="newCategorieReturn">
+      <wsdl:part element="impl:newCategorieResponse" name="parameters">
 
       </wsdl:part>
 
@@ -71,11 +124,15 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:message name="getCategoriesRequest">
 
+      <wsdl:part element="impl:getCategories" name="parameters">
+
+      </wsdl:part>
+
    </wsdl:message>
 
    <wsdl:message name="delCategorieResponse">
 
-      <wsdl:part element="impl:delCategorieReturn" name="delCategorieReturn">
+      <wsdl:part element="impl:delCategorieResponse" name="parameters">
 
       </wsdl:part>
 
@@ -83,7 +140,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:message name="getCategorieRequest">
 
-      <wsdl:part element="impl:categorie_id" name="categorie_id">
+      <wsdl:part element="impl:getCategorie" name="parameters">
 
       </wsdl:part>
 
@@ -91,7 +148,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:message name="modifyCategorieResponse">
 
-      <wsdl:part element="impl:modifyCategorieReturn" name="modifyCategorieReturn">
+      <wsdl:part element="impl:modifyCategorieResponse" name="parameters">
 
       </wsdl:part>
 
@@ -111,7 +168,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="modifyCategorie" parameterOrder="id nom">
+      <wsdl:operation name="modifyCategorie">
 
          <wsdl:input message="impl:modifyCategorieRequest" name="modifyCategorieRequest">
 
@@ -123,7 +180,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getCategorie" parameterOrder="categorie_id">
+      <wsdl:operation name="getCategorie">
 
          <wsdl:input message="impl:getCategorieRequest" name="getCategorieRequest">
 
@@ -135,7 +192,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="delCategorie" parameterOrder="categorie_id">
+      <wsdl:operation name="delCategorie">
 
          <wsdl:input message="impl:delCategorieRequest" name="delCategorieRequest">
 
@@ -147,7 +204,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="newCategorie" parameterOrder="nom">
+      <wsdl:operation name="newCategorie">
 
          <wsdl:input message="impl:newCategorieRequest" name="newCategorieRequest">
 

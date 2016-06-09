@@ -273,19 +273,19 @@ public class Listing_Editing extends HttpServlet {
 		String nouveau_telephone_string = (String) request.getParameter("telephone");
 		String nouveau_numero_string = (String) request.getParameter("numero");
 		String nouveau_rue = (String) request.getParameter("rue");
-		String nouveau_code_postale_string = (String) request.getParameter("code_postale");
+		String nouveau_code_postal_string = (String) request.getParameter("code_postale");
 		String nouveau_ville = (String) request.getParameter("ville");
 
 		// Transformation en int pour ceux doivent l'être
 		int nouveau_categorie_id = Integer.parseInt(nouveau_categorie_id_string);
 		int nouveau_telephone = Integer.parseInt(nouveau_telephone_string);
 		int nouveau_numero = Integer.parseInt(nouveau_numero_string);
-		int nouveau_code_postale = Integer.parseInt(nouveau_code_postale_string);
+		int nouveau_code_postal = Integer.parseInt(nouveau_code_postal_string);
 
 		// AJOUT
 		WebServiceAnnonceProxy annonceProxy = new WebServiceAnnonceProxy();
 		annonceProxy.createAnnonce(nouveau_nom, nouveau_categorie_id, nouveau_telephone, nouveau_numero, nouveau_rue,
-				nouveau_code_postale, nouveau_ville);
+				nouveau_code_postal, nouveau_ville);
 
 		// Récupère toutes les annonces pour les afficher
 		doGet(request, response);

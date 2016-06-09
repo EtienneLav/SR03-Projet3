@@ -29,31 +29,37 @@
 									<th style="text-align: center;">Modificiation</th>
 									<th style="text-align: center;">Suppression</th>
 								</tr>
-								<% 
-					  		HashMap<Integer,String> categorie_array = (HashMap<Integer,String>) request.getAttribute("liste_categories");
-					  	
-					  		for (Map.Entry<Integer, String> entry : categorie_array.entrySet()) {
-					  		    int id = entry.getKey();
-					  		    String nom = entry.getValue();
-					  	
-					     %>
+								<%
+									HashMap<Integer, String> categorie_array = (HashMap<Integer, String>) request
+											.getAttribute("liste_categories");
+
+									for (Map.Entry<Integer, String> entry : categorie_array.entrySet()) {
+										int id = entry.getKey();
+										String nom = entry.getValue();
+								%>
 								<tr>
 									<td align="center">
-										<% out.print(id); %>
+										<%
+											out.print(id);
+										%>
 									
-									</th>
+									</td>
 									<td align="center">
-										<% out.print(nom); %>
+										<%
+											out.print(nom);
+										%>
 									
-									</th>
+									</td>
 									<td align="center"><a
-										href="/SR03-TestClientCategorie/categorie/details?categorie_id=<% out.print(id); %>""><button
+										href="/SR03-TestClientCategorie/categorie/details?categorie_id=<%out.print(id);%>""><button
 												type="button" class="btn btn-info">Détails</button></a></td>
 									<td align="center"><a
-										href="/SR03-TestClientCategorie/categorie/liste?categorie_id=<% out.print(id); %>"><button
+										href="/SR03-TestClientCategorie/categorie/liste?categorie_id=<%out.print(id);%>"><button
 												type="button" class="btn btn-warning">Supprimer</button></a></td>
 								</tr>
-								<% } %>
+								<%
+									}
+								%>
 							</table>
 						</div>
 					</div>
