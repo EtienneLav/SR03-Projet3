@@ -197,11 +197,43 @@ public boolean modifyAnnonce(int annonce_id, String nom, int category_id, int te
     	
 	}
 	
-	
 	//TODO DONE
 	public boolean deleteAnnonce(int id) {
 		return annonceDAO.removeAnnonce(id);
 	}
-    
+	
+	
+	//TODO DONE
+	public String searchAnnonces(int categorie_id, String ville, String annonce_nom, int departement, boolean sont_recentes){ {
+		
+		List<Annonce> l_annonces_searched = annonceDAO.findAnnonces(categorie_id, ville, annonce_nom, departement, sont_recentes);
+		
+		System.out.println("Un ensemble de : " + l_annonces_searched.size() + " annonces");
+		for (int i = 0; i < l_annonces_searched.size(); i++) {
+			System.out.println("ID : "+l_annonces_searched.get(i).getId()+" Nom : "+l_annonces_searched.get(i).getNom()+", Categorie : "+l_annonces_searched.get(i).getCategorie().getNom());
+		}
+		
+		Annonces annonces_searched = new Annonces();
+		annonces_searched.setAnnonces(l_annonces_searched);
+		
+		JAXBContext jaxbContext;
+		try {
+			jaxbContext = JAXBContext.newInstance(Annonces.class);
+			java.io.StringWriter sw2 = new StringWriter();
+
+		    Marshaller marshaller = jaxbContext.createMarshaller();
+		    marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+		    marshaller.marshal(annonces_searched, sw2);
+
+		    System.out.println("string XML annonce by cat "+sw2.toString());
+		    return sw2.toString();
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "false";
+		}
+	}
 
 }

@@ -48,4 +48,15 @@
   
   
   
+  <servlet>
+    <servlet-name>SearchAnnonces</servlet-name>
+    <servlet-class>Search.SearchAnnonces</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchAnnonces</servlet-name>
+    <url-pattern>/search</url-pattern>
+  </servlet-mapping>
+  
+  
+  
 </web-app>

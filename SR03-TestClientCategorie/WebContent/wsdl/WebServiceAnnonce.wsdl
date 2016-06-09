@@ -97,8 +97,34 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="searchAnnonces">
+    <complexType>
+     <sequence>
+      <element name="categorie_id" type="xsd:int"/>
+      <element name="ville" type="xsd:string"/>
+      <element name="annonce_nom" type="xsd:string"/>
+      <element name="departement" type="xsd:int"/>
+      <element name="sont_recentes" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchAnnoncesResponse">
+    <complexType>
+     <sequence>
+      <element name="searchAnnoncesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
  </wsdl:types>
+
+   <wsdl:message name="searchAnnoncesRequest">
+
+      <wsdl:part element="impl:searchAnnonces" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
 
    <wsdl:message name="modifyAnnonceResponse">
 
@@ -116,17 +142,49 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="deleteAnnonceResponse">
+   <wsdl:message name="getAnnoncesCatResponse">
 
-      <wsdl:part element="impl:deleteAnnonceResponse" name="parameters">
+      <wsdl:part element="impl:getAnnoncesCatResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="getAnnoncesCatResponse">
+   <wsdl:message name="modifyAnnonceRequest">
 
-      <wsdl:part element="impl:getAnnoncesCatResponse" name="parameters">
+      <wsdl:part element="impl:modifyAnnonce" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createAnnonceRequest">
+
+      <wsdl:part element="impl:createAnnonce" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAnnonceByIDResponse">
+
+      <wsdl:part element="impl:getAnnonceByIDResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchAnnoncesResponse">
+
+      <wsdl:part element="impl:searchAnnoncesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteAnnonceResponse">
+
+      <wsdl:part element="impl:deleteAnnonceResponse" name="parameters">
 
       </wsdl:part>
 
@@ -156,14 +214,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="modifyAnnonceRequest">
-
-      <wsdl:part element="impl:modifyAnnonce" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="getAnnoncesCatRequest">
 
       <wsdl:part element="impl:getAnnoncesCat" name="parameters">
@@ -172,25 +222,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="createAnnonceRequest">
-
-      <wsdl:part element="impl:createAnnonce" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="deleteAnnonceRequest">
 
       <wsdl:part element="impl:deleteAnnonce" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="getAnnonceByIDResponse">
-
-      <wsdl:part element="impl:getAnnonceByIDResponse" name="parameters">
 
       </wsdl:part>
 
@@ -265,6 +299,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:modifyAnnonceResponse" name="modifyAnnonceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchAnnonces">
+
+         <wsdl:input message="impl:searchAnnoncesRequest" name="searchAnnoncesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:searchAnnoncesResponse" name="searchAnnoncesResponse">
 
        </wsdl:output>
 
@@ -377,6 +423,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="modifyAnnonceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchAnnonces">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchAnnoncesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchAnnoncesResponse">
 
             <wsdlsoap:body use="literal"/>
 

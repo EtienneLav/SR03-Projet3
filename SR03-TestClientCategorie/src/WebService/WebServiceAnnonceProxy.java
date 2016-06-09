@@ -80,5 +80,11 @@ public class WebServiceAnnonceProxy implements WebService.WebServiceAnnonce {
     return webServiceAnnonce.modifyAnnonce(annonce_id, nom, category_id, telephone, numero_adresse, rue_adresse, codePostal_adresse, ville_adresse);
   }
   
+  public java.lang.String searchAnnonces(int categorie_id, java.lang.String ville, java.lang.String annonce_nom, int departement, boolean sont_recentes) throws java.rmi.RemoteException{
+    if (webServiceAnnonce == null)
+      _initWebServiceAnnonceProxy();
+    return webServiceAnnonce.searchAnnonces(categorie_id, ville, annonce_nom, departement, sont_recentes);
+  }
+  
   
 }
