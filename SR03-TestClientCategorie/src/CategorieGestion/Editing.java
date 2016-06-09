@@ -20,8 +20,30 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+/**
+ * <br>
+ * Servlet d'édition des catégories.</b>
+ * <p>
+ * Gestion des réponses aux appels GET et POST
+ * </p>
+ * 
+ * 
+ * @author Gabriel Etienne
+ * @version 1.2
+ */
+@SuppressWarnings("serial")
 public class Editing extends HttpServlet {
 
+	/**
+	 * Méthode de la servlet permettant la gestion de requête GET
+	 * 
+	 * Récupération de la catégorie à éditer depuis le webservice grâce au proxy
+	 * 
+	 * Traitement du XML pour le renvoie des informations servant à l'affichage
+	 * à la JSP
+	 * 
+	 * @see WebService.WebServiceCategorieProxy
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		WebServiceCategorieProxy categorieProxy = new WebServiceCategorieProxy();
 
@@ -86,9 +108,23 @@ public class Editing extends HttpServlet {
 		this.getServletContext().getRequestDispatcher("/categorie/details.jsp").forward(request, response);
 	}
 
+	/**
+	 * Méthode de la servlet permettant la gestion de requête POST
+	 * 
+	 * Récupération de la catégorie à modifier. Envoie des informations de
+	 * modifications de catégorie au proxy qui va requêter le webservice.
+	 * 
+	 * Traitement du XML pour le renvoie des informations servant à l'affichage
+	 * à la JSP
+	 * 
+	 * @see WebService.WebServiceCategorieProxy
+	 * 
+	 */
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Récupère le nouveau nom de la catégorie
 		String updated_nom = (String) request.getParameter("name");
+		System.out.println("nom ; changer : "+updated_nom);
 
 		// Récupère l'id de la catégorie à modifier
 		String categorie_id_string = (String) request.getParameter("id");

@@ -1,14 +1,8 @@
 package Search;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
-import beans.*;
 import WebService.WebServiceCategorieProxy;
 import WebService.WebServiceAnnonceProxy;
 
@@ -30,8 +24,32 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+/**
+ * <br>
+ * Servlet de recherche d'annonces.</b>
+ * <p>
+ * Gestion des réponses aux appels GET et POST
+ * </p>
+ * 
+ * 
+ * @author Gabriel Etienne
+ * @version 1.2
+ */
+
+@SuppressWarnings("serial")
 public class SearchAnnonces extends HttpServlet {
 
+	/**
+	 * Méthode de la servlet permettant la gestion de requête GET
+	 * 
+	 * Gestion de récupération des informations servant à créer dynamiquement la
+	 * page de recherche Récupération des catégories d'annonce disponibles
+	 * 
+	 * Traitement du XML pour le renvoie des informations servant à l'affichage
+	 * à la JSP
+	 * 
+	 * @see WebService.WebServiceCategorieProxy
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// Récupération des categories et de leurs id
@@ -89,6 +107,20 @@ public class SearchAnnonces extends HttpServlet {
 
 	}
 
+	/**
+	 * Méthode de la servlet permettant la gestion de requête POST
+	 * 
+	 * Récupération des informations du formulaire de recherche d'annonces.
+	 * Traitement de ces données puis requête au proxy de solliciter le
+	 * webService pour récupérer les annonces correspondantes.
+	 * 
+	 * Traitement du XML pour le renvoie des informations servant à l'affichage
+	 * à la JSP
+	 * 
+	 * @see WebService.WebServiceAnnonceProxy
+	 * @see WebService.WebServiceCategorieProxy
+	 * 
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Récupère les champs pour recherche
 		String categorie_id_string = (String) request.getParameter("categorie_id");
@@ -99,11 +131,11 @@ public class SearchAnnonces extends HttpServlet {
 
 		// Transformation en int pour ceux doivent l'être
 		int categorie_id = Integer.parseInt(categorie_id_string);
-		
-		int departement =0;
-		if(departement_string != "")
-			 departement = Integer.parseInt(departement_string);
-		
+
+		int departement = 0;
+		if (departement_string != "")
+			departement = Integer.parseInt(departement_string);
+
 		int est_recent_int = Integer.parseInt(est_recent_string);
 
 		// Transformation en booléen du est_récent
@@ -112,17 +144,18 @@ public class SearchAnnonces extends HttpServlet {
 			est_recent = true;
 		else
 			est_recent = false;
-		
-		System.out.println("Debug categorie : "+categorie_id);
-		System.out.println("Debug nom : "+annonce_nom);
-		System.out.println("Debug ville : "+ville);
-		System.out.println("Debug departement : "+departement);
-		System.out.println("Debug est_recent : "+est_recent);
+
+		System.out.println("Debug categorie : " + categorie_id);
+		System.out.println("Debug nom : " + annonce_nom);
+		System.out.println("Debug ville : " + ville);
+		System.out.println("Debug departement : " + departement);
+		System.out.println("Debug est_recent : " + est_recent);
 
 		// Recherche
 		WebServiceAnnonceProxy annonceProxy = new WebServiceAnnonceProxy();
 
-		String annonces_resultat = annonceProxy.searchAnnonces(categorie_id, ville, annonce_nom, departement, est_recent);
+		String annonces_resultat = annonceProxy.searchAnnonces(categorie_id, ville, annonce_nom, departement,
+				est_recent);
 		System.out.println("string " + annonces_resultat);
 
 		// Tableau à envoyer à la JSP : id x nom x n° adresse x telephonne x
@@ -137,7 +170,7 @@ public class SearchAnnonces extends HttpServlet {
 		ArrayList<String> adresse_rue = new ArrayList<String>();
 		ArrayList<Integer> adresse_codePostal = new ArrayList<Integer>();
 		ArrayList<String> adresse_ville = new ArrayList<String>();
-		
+
 		// Traitement XML de toutes les "categorie"
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = null;
@@ -248,78 +281,78 @@ public class SearchAnnonces extends HttpServlet {
 
 				}
 			}
-			
+
 			// numero de l'adresse
-						NodeList nList_adresse_numero = doc.getElementsByTagName("numero");
-						System.out.println("nombre d'id d'annonce :" + nList_adresse_numero.getLength());
+			NodeList nList_adresse_numero = doc.getElementsByTagName("numero");
+			System.out.println("nombre d'id d'annonce :" + nList_adresse_numero.getLength());
 
-						for (int temp = 0; temp < nList_adresse_numero.getLength(); temp++) {
+			for (int temp = 0; temp < nList_adresse_numero.getLength(); temp++) {
 
-							Node nNode = nList_adresse_numero.item(temp);
-							System.out.println("\nCurrent Element :" + nNode.getNodeName());
+				Node nNode = nList_adresse_numero.item(temp);
+				System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
-							if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-								System.out.println("numero addr: " + nNode.getTextContent());
-								adresse_numero.add(((int) Long.valueOf(nNode.getTextContent()).longValue()));
+					System.out.println("numero addr: " + nNode.getTextContent());
+					adresse_numero.add(((int) Long.valueOf(nNode.getTextContent()).longValue()));
 
-							}
+				}
 
-						}
+			}
 
-						// rue de l'adresse
-						NodeList nList_adresse_rue = doc.getElementsByTagName("rue");
-						System.out.println("nombre de name d'annonce :" + nList_adresse_rue.getLength());
+			// rue de l'adresse
+			NodeList nList_adresse_rue = doc.getElementsByTagName("rue");
+			System.out.println("nombre de name d'annonce :" + nList_adresse_rue.getLength());
 
-						for (int temp = 0; temp < nList_adresse_rue.getLength(); temp++) {
+			for (int temp = 0; temp < nList_adresse_rue.getLength(); temp++) {
 
-							Node nNode = nList_adresse_rue.item(temp);
-							System.out.println("\nCurrent Element :" + nNode.getNodeName());
+				Node nNode = nList_adresse_rue.item(temp);
+				System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
-							if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-								System.out.println("rue addr: " + nNode.getTextContent());
-								adresse_rue.add(nNode.getTextContent());
+					System.out.println("rue addr: " + nNode.getTextContent());
+					adresse_rue.add(nNode.getTextContent());
 
-							}
+				}
 
-						}
+			}
 
-						// code postal de l'adresse
-						NodeList nList_adresse_code_postale = doc.getElementsByTagName("codePostal");
-						System.out.println("nombre d'id d'annonce :" + nList_adresse_code_postale.getLength());
+			// code postal de l'adresse
+			NodeList nList_adresse_code_postale = doc.getElementsByTagName("codePostal");
+			System.out.println("nombre d'id d'annonce :" + nList_adresse_code_postale.getLength());
 
-						for (int temp = 0; temp < nList_adresse_code_postale.getLength(); temp++) {
+			for (int temp = 0; temp < nList_adresse_code_postale.getLength(); temp++) {
 
-							Node nNode = nList_adresse_code_postale.item(temp);
-							System.out.println("\nCurrent Element :" + nNode.getNodeName());
+				Node nNode = nList_adresse_code_postale.item(temp);
+				System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
-							if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-								System.out.println("CP addr: " + nNode.getTextContent());
-								adresse_codePostal.add((int) Long.valueOf(nNode.getTextContent()).longValue());
+					System.out.println("CP addr: " + nNode.getTextContent());
+					adresse_codePostal.add((int) Long.valueOf(nNode.getTextContent()).longValue());
 
-							}
+				}
 
-						}
+			}
 
-						// ville de l'adresse
-						NodeList nList_adresse_ville = doc.getElementsByTagName("ville");
-						System.out.println("nombre de name d'annonce :" + nList_adresse_ville.getLength());
+			// ville de l'adresse
+			NodeList nList_adresse_ville = doc.getElementsByTagName("ville");
+			System.out.println("nombre de name d'annonce :" + nList_adresse_ville.getLength());
 
-						for (int temp = 0; temp < nList_adresse_ville.getLength(); temp++) {
+			for (int temp = 0; temp < nList_adresse_ville.getLength(); temp++) {
 
-							Node nNode = nList_adresse_ville.item(temp);
-							System.out.println("\nCurrent Element :" + nNode.getNodeName());
+				Node nNode = nList_adresse_ville.item(temp);
+				System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
-							if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-								System.out.println("ville addr: " + nNode.getTextContent());
-								adresse_ville.add(nNode.getTextContent());
+					System.out.println("ville addr: " + nNode.getTextContent());
+					adresse_ville.add(nNode.getTextContent());
 
-							}
+				}
 
-						}
+			}
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -385,7 +418,7 @@ public class SearchAnnonces extends HttpServlet {
 		request.setAttribute("liste_adresse_id", adresse_id_list);
 		request.setAttribute("liste_categorie_nom", categorie_nom_list);
 		request.setAttribute("liste_categorie_id", categorie_id_list);
-		
+
 		request.setAttribute("liste_adresse_numero", adresse_numero);
 		request.setAttribute("liste_adresse_rue", adresse_rue);
 		request.setAttribute("liste_adresse_code_postal", adresse_codePostal);

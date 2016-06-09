@@ -22,25 +22,48 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+/**
+ * <br>
+ * Servlet d'édition des annonces.</b>
+ * <p>
+ * Gestion des réponses aux appels GET et POST
+ * </p>
+ * 
+ * 
+ * @author Gabriel Etienne
+ * @version 1.2
+ */
+@SuppressWarnings("serial")
 public class Editing extends HttpServlet {
 
+	/**
+	 * Méthode de la servlet permettant la gestion de requête GET
+	 * 
+	 * Récupération de l'annonce à éditer depuis le webservice grâce au proxy
+	 * Récupération de la liste des categorie d'annonce disponible
+	 * 
+	 * Traitement du XML pour le renvoie des informations servant à l'affichage
+	 * à la JSP
+	 * 
+	 * @see WebService.WebServiceAnnonceProxy
+	 * @see WebService.WebServiceCategorieProxy
+	 * 
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		WebServiceAnnonceProxy annonceProxy = new WebServiceAnnonceProxy();
 
-		//Deux façon d'arriver sur cette page : depuis la page de liste des annonces ou depuis la soumission du formulaire de cette même page
+		// Deux façon d'arriver sur cette page : depuis la page de liste des
+		// annonces ou depuis la soumission du formulaire de cette même page
 		String annonce_id_string = (String) request.getParameter("annonce_id");
 		System.out.println(annonce_id_string);
 		int annonce_id = 0;
-		if(annonce_id_string == null){
+		if (annonce_id_string == null) {
 			int annonce_id_attribute = (int) request.getAttribute("annonce_id");
 			annonce_id = (int) Long.valueOf(annonce_id_attribute).longValue();
-		}
-		else {
+		} else {
 			annonce_id = (int) Long.valueOf(annonce_id_string).longValue();
 		}
-		
 
-		
 		// Récupère la categorie à modifier
 		String annonce_XML = annonceProxy.getAnnonceByID(annonce_id);
 		System.out.println("String XML annonce à afficher : " + annonce_XML);
@@ -51,7 +74,7 @@ public class Editing extends HttpServlet {
 		int annonce_telephone_JSP = 0;
 		int adresse_numero_JSP = 0;
 		String adresse_rue_JSP = null;
-		int adresse_code_postale_JSP = 0;
+		int adresse_code_postal_JSP = 0;
 		String adresse_ville_JSP = null;
 		int categorie_id_JSP = 0;
 		String categorie_nom_JSP = null;
@@ -164,18 +187,18 @@ public class Editing extends HttpServlet {
 			}
 
 			// code postal de l'adresse
-			NodeList nList_adresse_code_postale = doc.getElementsByTagName("codePostal");
-			System.out.println("nombre d'id d'annonce :" + nList_adresse_code_postale.getLength());
+			NodeList nList_adresse_code_postal = doc.getElementsByTagName("codePostal");
+			System.out.println("nombre d'id d'annonce :" + nList_adresse_code_postal.getLength());
 
-			for (int temp = 0; temp < nList_adresse_code_postale.getLength(); temp++) {
+			for (int temp = 0; temp < nList_adresse_code_postal.getLength(); temp++) {
 
-				Node nNode = nList_adresse_code_postale.item(temp);
+				Node nNode = nList_adresse_code_postal.item(temp);
 				System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 					System.out.println("CP addr: " + nNode.getTextContent());
-					adresse_code_postale_JSP = ((int) Long.valueOf(nNode.getTextContent()).longValue());
+					adresse_code_postal_JSP = ((int) Long.valueOf(nNode.getTextContent()).longValue());
 
 				}
 
@@ -284,7 +307,7 @@ public class Editing extends HttpServlet {
 		request.setAttribute("annonce_telephone", annonce_telephone_JSP);
 		request.setAttribute("adresse_numero", adresse_numero_JSP);
 		request.setAttribute("adresse_rue", adresse_rue_JSP);
-		request.setAttribute("adresse_codePostal", adresse_code_postale_JSP);
+		request.setAttribute("adresse_codePostal", adresse_code_postal_JSP);
 		request.setAttribute("adresse_ville", adresse_ville_JSP);
 		request.setAttribute("categorie_id", categorie_id_JSP);
 		request.setAttribute("categorie_nom", categorie_nom_JSP);
@@ -292,6 +315,16 @@ public class Editing extends HttpServlet {
 		this.getServletContext().getRequestDispatcher("/annonce/details.jsp").forward(request, response);
 	}
 
+	/**
+	 * Méthode de la servlet permettant la gestion de requête POST
+	 * 
+	 * Récupération de l'annonce à modifier. Envoie des informations de
+	 * modifications d'annonce à l'annonce proxy qui va requêter le webservice.
+	 * 
+	 * @see WebService.WebServiceAnnonceProxy
+	 * @see WebService.WebServiceCategorieProxy
+	 * 
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Récupère les champs pour ajout
 		String nouveau_nom = (String) request.getParameter("nom");
@@ -299,28 +332,28 @@ public class Editing extends HttpServlet {
 		String nouveau_telephone_string = (String) request.getParameter("telephone");
 		String nouveau_numero_string = (String) request.getParameter("numero");
 		String nouveau_rue = (String) request.getParameter("rue");
-		String nouveau_code_postale_string = (String) request.getParameter("code_postale");
+		String nouveau_code_postal_string = (String) request.getParameter("code_postal");
 		String nouveau_ville = (String) request.getParameter("ville");
-		
+
 		String annonce_id_string = (String) request.getParameter("annonce_id");
-		
+
 		// Transformation en int pour ceux doivent l'être
 		int nouveau_categorie_id = Integer.parseInt(nouveau_categorie_id_string);
 		int nouveau_telephone = Integer.parseInt(nouveau_telephone_string);
 		int nouveau_numero = Integer.parseInt(nouveau_numero_string);
-		int nouveau_code_postale = Integer.parseInt(nouveau_code_postale_string);
+		int nouveau_code_postal = Integer.parseInt(nouveau_code_postal_string);
 		int annonce_id = Integer.parseInt(annonce_id_string);
 
 		// UPDATE
 		WebServiceAnnonceProxy annonceProxy = new WebServiceAnnonceProxy();
 
 		// Requete le webservice pour modifier une annonce
-		annonceProxy.modifyAnnonce(annonce_id, nouveau_nom, nouveau_categorie_id, nouveau_telephone, nouveau_numero, nouveau_rue, nouveau_code_postale, nouveau_ville);
+		annonceProxy.modifyAnnonce(annonce_id, nouveau_nom, nouveau_categorie_id, nouveau_telephone, nouveau_numero,
+				nouveau_rue, nouveau_code_postal, nouveau_ville);
 
-		
 		request.setAttribute("annonce_id", annonce_id_string);
-		
-		//Récupère toutes les annonces pour les afficher
+
+		// Récupère toutes les annonces pour les afficher
 		doGet(request, response);
 
 	}

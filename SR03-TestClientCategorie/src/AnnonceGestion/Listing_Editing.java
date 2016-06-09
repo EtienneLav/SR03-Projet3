@@ -1,14 +1,8 @@
 package AnnonceGestion;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
-import beans.*;
 import WebService.WebServiceCategorieProxy;
 import WebService.WebServiceAnnonceProxy;
 
@@ -30,8 +24,36 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+/**
+ * <br>
+ * Servlet d'affichage et d'ajout d'annonces.</b>
+ * <p>
+ * Gestion des réponses aux appels GET et POST
+ * </p>
+ * 
+ * 
+ * @author Gabriel Etienne
+ * @version 1.2
+ */
+@SuppressWarnings("serial")
 public class Listing_Editing extends HttpServlet {
 
+	/**
+	 * Méthode de la servlet permettant la gestion de requête GET
+	 * 
+	 * Récupération des annonces à afficher depuis le webservice grâce au proxy
+	 * Récupération de la liste des annonces disponibles
+	 * 
+	 * Récupération de la liste des catégories disponibles pour le formulaire
+	 * d'ajout d'annonce
+	 * 
+	 * Traitement du XML pour le renvoie des informations servant à l'affichage
+	 * à la JSP
+	 * 
+	 * @see WebService.WebServiceAnnonceProxy
+	 * @see WebService.WebServiceCategorieProxy
+	 * 
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		WebServiceAnnonceProxy annonceProxy = new WebServiceAnnonceProxy();
 
@@ -157,8 +179,8 @@ public class Listing_Editing extends HttpServlet {
 
 					System.out.println("Categorie id : " + eElement.getAttribute("id"));
 					System.out.println("Categorie id : " + eElement.getAttribute("nom"));
-					
-					categorie_id_list.add(Integer.parseInt(eElement.getAttribute("id")));					
+
+					categorie_id_list.add(Integer.parseInt(eElement.getAttribute("id")));
 					categorie_nom_list.add((eElement.getAttribute("nom")));
 
 				}
@@ -228,12 +250,22 @@ public class Listing_Editing extends HttpServlet {
 		request.setAttribute("liste_adresse_id", adresse_id_list);
 		request.setAttribute("liste_categorie_nom", categorie_nom_list);
 		request.setAttribute("liste_categorie_id", categorie_id_list);
-		
+
 		System.out.println("out2?");
 		this.getServletContext().getRequestDispatcher("/annonce/liste.jsp").forward(request, response);
 
 	}
 
+	/**
+	 * Méthode de la servlet permettant la gestion de requête POST
+	 * 
+	 * Récupération de l'annonce à ajouter. Envoie des informations d'ajout
+	 * d'annonce à l'annonce proxy qui va requêter le webservice.
+	 * 
+	 * @see WebService.WebServiceAnnonceProxy
+	 * @see WebService.WebServiceCategorieProxy
+	 * 
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Récupère les champs pour ajout
 		String nouveau_nom = (String) request.getParameter("nom");
