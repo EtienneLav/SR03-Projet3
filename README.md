@@ -18,4 +18,4 @@ DONE
 - Gestion Annonces côté server et côté client
 - Marshalling only XML sur tous les échanges server --> client
 - Gestion des différents type de recherche côté server et client
-- Recherche par paramètres combinés : Catégorie x nom x ville x departement x recent
+- Recherche par paramètres combinés et optionnels : Catégorie x nom x ville x departement x recent (tous sont ET optionnels ET se combinables)
