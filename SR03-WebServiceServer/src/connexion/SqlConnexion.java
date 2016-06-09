@@ -17,7 +17,7 @@ public class SqlConnexion{
 	/**
 	 * Mot de passe du user
 	 */
-	private static String passwd = "GBtR5g6y";
+	private static String passwd = "";
 	/**
 	 * Objet Connection
 	 */
