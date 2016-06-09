@@ -11,9 +11,6 @@ TODO
 DOING 
 
 
-- Rapport
-- JAVADOC client
-
 DONE 
 
 - Gestion des catégories côté server et client
@@ -25,3 +22,6 @@ DONE
 - Recherche par paramètres combinés et optionnels : Catégorie x nom x ville x departement x recent (tous sont ET optionnels ET se combinables)
 - MLD
 - JAVADOC Server
+- JAVADOC client
+- Rapport
+
