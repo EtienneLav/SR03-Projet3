@@ -38,7 +38,7 @@
 								<%
 									}
 								%>
-								
+
 							</select>
 
 						</div>
@@ -60,7 +60,7 @@
 						</div>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td style="border-top: none;">
 						<div class="form-group">
@@ -76,7 +76,7 @@
 						</div>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td style="border-top: none;">
 						<div class="form-group">
@@ -87,17 +87,17 @@
 					<td style="border-top: none;">
 						<div class="form-group">
 							<label for="inputDepartement" class="sr-only"></label> <input
-								name="departement" type="departement" class="form-control" id="inputDepartement"
-								placeholder="departement" value="">
+								name="departement" type="departement" class="form-control"
+								id="inputDepartement" placeholder="departement" value="">
 						</div>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td style="border-top: none;">
 						<div class="form-group">
 							<label class="sr-only">Récentes (20 dernières)</label>
-							<p class="form-control-static"> Récentes (20 dernières):</p>
+							<p class="form-control-static">Récentes (20 dernières):</p>
 						</div>
 					</td>
 					<td style="border-top: none;">
@@ -108,7 +108,7 @@
 						</div>
 					</td>
 				</tr>
-				
+
 				<tr>
 					<td style="border-top: none;">
 						<button type="submit" class="btn btn-default">Valider</button>

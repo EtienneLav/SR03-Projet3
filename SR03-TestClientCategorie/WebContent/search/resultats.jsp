@@ -12,18 +12,21 @@
 
 		ArrayList<String> categorie_nom_list = (ArrayList<String>) request.getAttribute("liste_categorie_nom");
 		ArrayList<Integer> categorie_id_list = (ArrayList<Integer>) request.getAttribute("liste_categorie_id");
-		
+
 		ArrayList<Integer> adresse_numero_list = (ArrayList<Integer>) request.getAttribute("liste_adresse_numero");
 		ArrayList<String> adresse_rue_list = (ArrayList<String>) request.getAttribute("liste_adresse_rue");
-		ArrayList<Integer> adresse_code_postal_list = (ArrayList<Integer>) request.getAttribute("liste_adresse_code_postal");
+		ArrayList<Integer> adresse_code_postal_list = (ArrayList<Integer>) request
+				.getAttribute("liste_adresse_code_postal");
 		ArrayList<String> adresse_ville_list = (ArrayList<String>) request.getAttribute("liste_adresse_ville");
 	%>
 
-	
+
 	<div class="row">
 		<div class="col-lg-12">
 			<h3>Résultats de recherche</h3>
-			<% if(id_list.size() > 0) { %>
+			<%
+				if (id_list.size() > 0) {
+			%>
 			<div class="panel-group" id="accordion" role="tablist"
 				aria-multiselectable="true">
 				<div class="panel panel-default">
@@ -48,17 +51,17 @@
 								</tr>
 								<%
 									for (int i = 0; i < id_list.size(); i++) {
-										int id_current = (int) id_list.get(i);
-										String nom_current = (String) nom_list.get(i);
-										int tel_current = (int) tel_list.get(i);
-										int adresse_id_current = (int) adresse_id_list.get(i);
-										String categorie_nom_current = (String) categorie_nom_list.get(i);
-										int categorie_id_current = (int) categorie_id_list.get(i);
-										
-										int adresse_numero_current = (int) adresse_numero_list.get(i);
-										String categorie_rue_current = (String) adresse_rue_list.get(i);
-										int adresse_code_postal_current = (int) adresse_code_postal_list.get(i);
-										String categorie_ville_current = (String) adresse_ville_list.get(i);
+											int id_current = (int) id_list.get(i);
+											String nom_current = (String) nom_list.get(i);
+											int tel_current = (int) tel_list.get(i);
+											int adresse_id_current = (int) adresse_id_list.get(i);
+											String categorie_nom_current = (String) categorie_nom_list.get(i);
+											int categorie_id_current = (int) categorie_id_list.get(i);
+
+											int adresse_numero_current = (int) adresse_numero_list.get(i);
+											String categorie_rue_current = (String) adresse_rue_list.get(i);
+											int adresse_code_postal_current = (int) adresse_code_postal_list.get(i);
+											String categorie_ville_current = (String) adresse_ville_list.get(i);
 								%>
 								<tr>
 									<td align="center">
@@ -87,7 +90,8 @@
 									</th>
 									<td align="center">
 										<%
-											out.print(adresse_numero_current+", rue "+categorie_rue_current+" "+adresse_code_postal_current+" "+categorie_ville_current);
+											out.print(adresse_numero_current + ", rue " + categorie_rue_current + " "
+															+ adresse_code_postal_current + " " + categorie_ville_current);
 										%>
 									
 									</th>
@@ -100,13 +104,17 @@
 					</div>
 				</div>
 			</div>
-			<% }
-	else{ %>
-	<div>Aucune annonce ne correspond à votre recherche ...</div><br>
-	<% }%>
+			<%
+				} else {
+			%>
+			<div>Aucune annonce ne correspond à votre recherche ...</div>
+			<br>
+			<%
+				}
+			%>
 		</div>
 	</div>
-	
+
 	<button type="button" class="btn btn-info">
 		<a href="/SR03-TestClientCategorie/search">Effectuer une nouvelle
 			recherche</a>
