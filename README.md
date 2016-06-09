@@ -10,9 +10,9 @@ TODO
 
 DOING 
 
-- MLD
+
 - Rapport
-- JAVADOC
+- JAVADOC client
 
 DONE 
 
@@ -23,3 +23,5 @@ DONE
 - Marshalling only XML sur tous les échanges server --> client
 - Gestion des différents type de recherche côté server et client
 - Recherche par paramètres combinés et optionnels : Catégorie x nom x ville x departement x recent (tous sont ET optionnels ET se combinables)
+- MLD
+- JAVADOC Server
