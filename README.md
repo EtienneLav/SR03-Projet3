@@ -7,10 +7,8 @@ TODO
 
 - .sql création de la table
 - .sql population de la table
+- MLD
 
-DOING
-
-- Gestion des différents type de recherche côté server et client
 
 DONE 
 
@@ -19,3 +17,5 @@ DONE
 - XML + Arbre (bien formés)
 - Gestion Annonces côté server et côté client
 - Marshalling only XML sur tous les échanges server --> client
+- Gestion des différents type de recherche côté server et client
+- Recherche par paramètres combinés : Catégorie x nom x ville x departement x recent
