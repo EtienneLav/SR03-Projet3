@@ -1,0 +1,3 @@
+Annonce (#id : int, nom : varchar, adresse => Adresse, telephone : int, catégorie => Catégorie)
+Catégorie (#id : int , nom : varchar)
+Adresse (#id : int, numéro : int, rue : varchar, ville : varchar, codePostal : int)
