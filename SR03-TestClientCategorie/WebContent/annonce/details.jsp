@@ -160,7 +160,7 @@
 			</form>
 		</div>
 		
-<button type="button" class="btn btn-success"><a href="/SR03-TestClientCategorie/categorie/liste">Liste des annonces</a></button>
+<button type="button" class="btn btn-info"><a href="/SR03-TestClientCategorie/categorie/liste">Liste des annonces</a></button>
 
 		
 

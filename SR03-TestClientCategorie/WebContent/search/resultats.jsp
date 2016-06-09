@@ -107,7 +107,7 @@
 		</div>
 	</div>
 	
-	<button type="button" class="btn btn-success">
+	<button type="button" class="btn btn-info">
 		<a href="/SR03-TestClientCategorie/search">Effectuer une nouvelle
 			recherche</a>
 	</button>

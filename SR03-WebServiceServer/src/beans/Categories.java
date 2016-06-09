@@ -18,7 +18,7 @@ public class Categories
         return categories;
     }
  
-    public void setEmployees(List<Categorie> categories) {
+    public void setCategories(List<Categorie> categories) {
         this.categories = categories;
     }
 }

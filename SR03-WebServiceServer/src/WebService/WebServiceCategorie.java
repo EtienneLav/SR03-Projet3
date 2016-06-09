@@ -54,7 +54,7 @@ public class WebServiceCategorie {
 		}
 		
 		Categories categories = new Categories();
-		categories.setEmployees(l_categories);
+		categories.setCategories(l_categories);
 		
 		JAXBContext jaxbContext;
 		try {
