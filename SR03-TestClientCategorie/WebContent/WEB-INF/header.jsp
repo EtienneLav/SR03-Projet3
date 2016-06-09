@@ -51,6 +51,10 @@
                     <li>
                         <a href="/SR03-TestClientCategorie/categorie/liste">Liste des catégories</a>
                     </li>
+                    <li>
+                    <a href="/SR03-TestClientCategorie/search">Recherche</a>
+                   
+                    </li>
                     
             </div>
         </div>

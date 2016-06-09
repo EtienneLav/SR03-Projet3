@@ -304,7 +304,6 @@ public class Editing extends HttpServlet {
 		
 		String annonce_id_string = (String) request.getParameter("annonce_id");
 		
-
 		// Transformation en int pour ceux doivent l'être
 		int nouveau_categorie_id = Integer.parseInt(nouveau_categorie_id_string);
 		int nouveau_telephone = Integer.parseInt(nouveau_telephone_string);

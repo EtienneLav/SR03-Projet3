@@ -114,7 +114,7 @@
 				  		<td style=" border-top: none;">
 				  			<div class="form-group">
 				    			<label for="inputName" class="sr-only"></label>
-				    			<input name ="rue" type="rue" class="form-control" id="inputName" placeholder="rue" value="rue">
+				    			<input name ="rue" type="rue" class="form-control" id="inputName" placeholder="rue" value="<% out.print(adresse_rue); %>">
 				  			</div>
 				  		</td>
 				  	</tr>
