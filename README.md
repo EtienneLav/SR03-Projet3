@@ -7,10 +7,12 @@ TODO
 
 - .sql création de la table
 - .sql population de la table
+
+DOING 
+
 - MLD
 - Rapport
 - JAVADOC
-
 
 DONE 
 
