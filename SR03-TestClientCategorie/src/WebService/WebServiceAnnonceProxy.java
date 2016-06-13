@@ -44,22 +44,10 @@ public class WebServiceAnnonceProxy implements WebService.WebServiceAnnonce {
     return webServiceAnnonce;
   }
   
-  public java.lang.String createAnnonce(java.lang.String nom, int category_id, int telephone, int numero_adresse, java.lang.String rue_adresse, int codePostal_adresse, java.lang.String ville_adresse) throws java.rmi.RemoteException{
+  public java.lang.String getAnnonces() throws java.rmi.RemoteException{
     if (webServiceAnnonce == null)
       _initWebServiceAnnonceProxy();
-    return webServiceAnnonce.createAnnonce(nom, category_id, telephone, numero_adresse, rue_adresse, codePostal_adresse, ville_adresse);
-  }
-  
-  public boolean deleteAnnonce(int id) throws java.rmi.RemoteException{
-    if (webServiceAnnonce == null)
-      _initWebServiceAnnonceProxy();
-    return webServiceAnnonce.deleteAnnonce(id);
-  }
-  
-  public java.lang.String getAnnoncesCat(int categorie_id) throws java.rmi.RemoteException{
-    if (webServiceAnnonce == null)
-      _initWebServiceAnnonceProxy();
-    return webServiceAnnonce.getAnnoncesCat(categorie_id);
+    return webServiceAnnonce.getAnnonces();
   }
   
   public java.lang.String getAnnonceByID(int id) throws java.rmi.RemoteException{
@@ -68,10 +56,10 @@ public class WebServiceAnnonceProxy implements WebService.WebServiceAnnonce {
     return webServiceAnnonce.getAnnonceByID(id);
   }
   
-  public java.lang.String getAnnonces() throws java.rmi.RemoteException{
+  public java.lang.String getAnnoncesCat(int categorie_id) throws java.rmi.RemoteException{
     if (webServiceAnnonce == null)
       _initWebServiceAnnonceProxy();
-    return webServiceAnnonce.getAnnonces();
+    return webServiceAnnonce.getAnnoncesCat(categorie_id);
   }
   
   public boolean modifyAnnonce(int annonce_id, java.lang.String nom, int category_id, int telephone, int numero_adresse, java.lang.String rue_adresse, int codePostal_adresse, java.lang.String ville_adresse) throws java.rmi.RemoteException{
@@ -80,10 +68,22 @@ public class WebServiceAnnonceProxy implements WebService.WebServiceAnnonce {
     return webServiceAnnonce.modifyAnnonce(annonce_id, nom, category_id, telephone, numero_adresse, rue_adresse, codePostal_adresse, ville_adresse);
   }
   
+  public boolean deleteAnnonce(int id) throws java.rmi.RemoteException{
+    if (webServiceAnnonce == null)
+      _initWebServiceAnnonceProxy();
+    return webServiceAnnonce.deleteAnnonce(id);
+  }
+  
   public java.lang.String searchAnnonces(int categorie_id, java.lang.String ville, java.lang.String annonce_nom, int departement, boolean sont_recentes) throws java.rmi.RemoteException{
     if (webServiceAnnonce == null)
       _initWebServiceAnnonceProxy();
     return webServiceAnnonce.searchAnnonces(categorie_id, ville, annonce_nom, departement, sont_recentes);
+  }
+  
+  public java.lang.String createAnnonce(java.lang.String nom, int category_id, int telephone, int numero_adresse, java.lang.String rue_adresse, int codePostal_adresse, java.lang.String ville_adresse) throws java.rmi.RemoteException{
+    if (webServiceAnnonce == null)
+      _initWebServiceAnnonceProxy();
+    return webServiceAnnonce.createAnnonce(nom, category_id, telephone, numero_adresse, rue_adresse, codePostal_adresse, ville_adresse);
   }
   
   

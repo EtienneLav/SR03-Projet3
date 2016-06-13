@@ -2,7 +2,6 @@ package WebService;
 
 import java.util.List;
 
-import beans.Annonce;
 import beans.Categorie;
 import beans.Categories;
 import DAO.CategorieDAO;

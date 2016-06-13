@@ -55,6 +55,10 @@
                     <a href="/SR03-TestClientCategorie/search">Recherche</a>
                    
                     </li>
+                    <li>
+                    <a href="/SR03-TestClientCategorie/ajout">Déposer une annonce</a>
+                   
+                    </li>
                     
             </div>
         </div>

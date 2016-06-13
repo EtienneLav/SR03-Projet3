@@ -44,29 +44,33 @@ public class AnnonceDAO extends DAO<Annonce> {
 	 */
 	public Annonce create(Annonce annonce, Long categorieId) {
 		try {
-			ResultSet result = this.connect
-					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)
-					.executeQuery("SELECT MAX(id) AS id FROM Adresse");
-			if (result.first()) {
-				long id = result.getLong("id") + 1;
-
+			
 				// Création du niveau inférieur.
 				AdresseDAO adresseDAO = (AdresseDAO) DAOFactory.getAdresseDAO();
 				Adresse adresse_created = adresseDAO.create(annonce.getAdresse());
-
-				PreparedStatement prepare = this.connect.prepareStatement(
-						"INSERT INTO Annonce (id, nom, adresse, telephone, categorie_id) VALUES(?, ?, ?, ?, ?)");
-				prepare.setLong(1, id);
-				prepare.setString(2, annonce.getNom());
-				prepare.setLong(3, adresse_created.getId());
-				prepare.setLong(4, annonce.getTelephone());
-				prepare.setLong(5, categorieId);
-
-				annonce = this.find(id);
-			}
+		
+				ResultSet result_annonce = this.connect
+						.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)
+						.executeQuery("SELECT MAX(id) AS id FROM Annonce");
+				
+				if (result_annonce.first()) {
+					long annonce_id = result_annonce.getLong("id") + 1;
+					
+					PreparedStatement prepare = this.connect.prepareStatement(
+							"INSERT INTO Annonce (id, nom, adresse, telephone, categorie_id) VALUES(?, ?, ?, ?, ?)");
+					prepare.setLong(1, annonce_id);
+					prepare.setString(2, annonce.getNom());
+					prepare.setLong(3, adresse_created.getId());
+					prepare.setLong(4, annonce.getTelephone());
+					prepare.setLong(5, categorieId);
+					prepare.executeUpdate();
+					
+					annonce = this.find(annonce_id);
+				}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+			}
 
 		return annonce;
 	}

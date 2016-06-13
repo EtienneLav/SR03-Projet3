@@ -15,36 +15,12 @@
   <service name="WebServiceAnnonce" provider="java:RPC" style="wrapped" use="literal">
       <parameter name="wsdlTargetNamespace" value="http://WebService"/>
       <parameter name="wsdlServiceElement" value="WebServiceAnnonceService"/>
-      <parameter name="schemaQualified" value="http://beans,http://WebService"/>
+      <parameter name="schemaQualified" value="http://WebService"/>
       <parameter name="wsdlServicePort" value="WebServiceAnnonce"/>
       <parameter name="className" value="WebService.WebServiceAnnonceSoapBindingSkeleton"/>
       <parameter name="wsdlPortType" value="WebServiceAnnonce"/>
       <parameter name="typeMappingVersion" value="1.2"/>
       <parameter name="allowedMethods" value="*"/>
 
-      <typeMapping
-        xmlns:ns="http://beans"
-        qname="ns:Adresse"
-        type="java:beans.Adresse"
-        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
-        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
-        encodingStyle=""
-      />
-      <typeMapping
-        xmlns:ns="http://beans"
-        qname="ns:Annonce"
-        type="java:beans.Annonce"
-        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
-        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
-        encodingStyle=""
-      />
-      <typeMapping
-        xmlns:ns="http://beans"
-        qname="ns:Categorie"
-        type="java:beans.Categorie"
-        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
-        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
-        encodingStyle=""
-      />
   </service>
 </deployment>

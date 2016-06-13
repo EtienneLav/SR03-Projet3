@@ -5,26 +5,15 @@
 <%@page import="java.util.Map"%>
 <section>
 
-
-	<%
-		int annonce_id = (int) request.getAttribute("annonce_id");
-		String annonce_nom = (String) request.getAttribute("annonce_nom");
-		int annonce_telephone = (int) request.getAttribute("annonce_telephone");
-		int adresse_numero = (int) request.getAttribute("adresse_numero");
-		String adresse_rue = (String) request.getAttribute("adresse_rue");
-		int adresse_codePostal = (int) request.getAttribute("adresse_codePostal");
-		String adresse_ville = (String) request.getAttribute("adresse_ville");
-
-		int categorie_id = (int) request.getAttribute("categorie_id");
-		String categorie_nom = (String) request.getAttribute("categorie_nom");
-	%>
+	
 
 	<div class="well">
-		<h4>Modification d'une annonce :</h4>
+		<h4>Ajout d'une annonce :</h4>
 		<form class="form-inline" method="POST"
-			action="/SR03-TestClientCategorie/annonce/details">
+			action="/SR03-TestClientCategorie/ajout">
 
 			<table class="table" style="border-top: none;">
+
 
 				<tr>
 
@@ -38,12 +27,11 @@
 						<div class="form-group">
 							<label for="inputName" class="sr-only"></label> <input name="nom"
 								type="name" class="form-control" id="inputName"
-								placeholder="name" value="<%out.print(annonce_nom);%>">
+								placeholder="name" value="nom">
 						</div>
 					</td>
 				</tr>
 
-				</tr>
 				<tr>
 
 					<td style="border-top: none;">
@@ -63,9 +51,7 @@
 										int id = entry.getKey();
 										String nom = entry.getValue();
 								%>
-								<option <%if (categorie_id == id)
-					out.print("selected");%>
-									value="<%out.print(id);%>">
+								<option value="<%out.print(id);%>">
 									<%
 										out.print(nom);
 									%>
@@ -91,8 +77,7 @@
 						<div class="form-group">
 							<label for="inputName" class="sr-only"></label> <input
 								name="telephone" type="telephone" class="form-control"
-								id="inputName" placeholder="telephone"
-								value="<%out.print(annonce_telephone);%>">
+								id="inputName" placeholder="telephone" value="telephone">
 						</div>
 					</td>
 				</tr>
@@ -110,7 +95,7 @@
 						<div class="form-group">
 							<label for="inputName" class="sr-only"></label> <input
 								name="numero" type="numero" class="form-control" id="inputName"
-								placeholder="numero" value="<%out.print(adresse_numero);%>">
+								placeholder="numero" value="numero">
 						</div>
 					</td>
 				</tr>
@@ -127,7 +112,7 @@
 						<div class="form-group">
 							<label for="inputName" class="sr-only"></label> <input name="rue"
 								type="rue" class="form-control" id="inputName" placeholder="rue"
-								value="<%out.print(adresse_rue);%>">
+								value="rue">
 						</div>
 					</td>
 				</tr>
@@ -137,15 +122,14 @@
 					<td style="border-top: none;">
 						<div class="form-group">
 							<label class="sr-only">Code Postal</label>
-							<p class="form-control-static">Code Postal :</p>
+							<p class="form-control-static">Code Postale :</p>
 						</div>
 					</td>
 					<td style="border-top: none;">
 						<div class="form-group">
 							<label for="inputName" class="sr-only"></label> <input
 								name="code_postal" type="code_postal" class="form-control"
-								id="inputName" placeholder="code_postal"
-								value="<%out.print(adresse_codePostal);%>">
+								id="inputName" placeholder="code_postal" value="code postal">
 						</div>
 					</td>
 				</tr>
@@ -162,14 +146,11 @@
 						<div class="form-group">
 							<label for="inputName" class="sr-only"></label> <input
 								name="ville" type="ville" class="form-control" id="inputName"
-								placeholder="ville" value="<%out.print(adresse_ville);%>">
+								placeholder="ville" value="ville">
 						</div>
 					</td>
 				</tr>
 
-				<input name="annonce_id" type="hidden" class="form-control"
-					id="inputId" placeholder="<%out.print(annonce_id);%>"
-					value="<%out.print(annonce_id);%>">
 				<tr>
 					<td style="border-top: none;">
 						<button type="submit" class="btn btn-default">Valider</button>
@@ -178,13 +159,12 @@
 		</form>
 	</div>
 
-	<button type="button" class="btn btn-info">
-		<a href="/SR03-TestClientCategorie/annonce/liste">Liste des
-			annonces</a>
-	</button>
+
 
 
 
 </section>
 
 <%@ include file="../WEB-INF/footer.jsp"%>
+
+

@@ -26,11 +26,11 @@
     <url-pattern>/categorie/details</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Listing_AddingAnnonce</servlet-name>
-    <servlet-class>AnnonceGestion.Listing_Editing</servlet-class>
+    <servlet-name>Listing</servlet-name>
+    <servlet-class>AnnonceGestion.Listing</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Listing_AddingAnnonce</servlet-name>
+    <servlet-name>Listing</servlet-name>
     <url-pattern>/annonce/liste</url-pattern>
   </servlet-mapping>
   <servlet>
@@ -49,6 +49,17 @@
     <servlet-name>SearchAnnonces</servlet-name>
     <url-pattern>/search</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AddAnnonce</servlet-name>
+    <servlet-class>AnnonceAjout.Adding</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddAnnonce</servlet-name>
+    <url-pattern>/ajout</url-pattern>
+  </servlet-mapping>
+
+  
   <servlet>
     <display-name>Apache-Axis Servlet</display-name>
     <servlet-name>AxisServlet</servlet-name>

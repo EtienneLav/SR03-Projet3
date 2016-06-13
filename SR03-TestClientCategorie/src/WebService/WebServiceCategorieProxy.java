@@ -50,12 +50,6 @@ public class WebServiceCategorieProxy implements WebService.WebServiceCategorie 
     return webServiceCategorie.getCategories();
   }
   
-  public boolean modifyCategorie(int id, java.lang.String nom) throws java.rmi.RemoteException{
-    if (webServiceCategorie == null)
-      _initWebServiceCategorieProxy();
-    return webServiceCategorie.modifyCategorie(id, nom);
-  }
-  
   public java.lang.String getCategorie(int categorie_id) throws java.rmi.RemoteException{
     if (webServiceCategorie == null)
       _initWebServiceCategorieProxy();
@@ -72,6 +66,12 @@ public class WebServiceCategorieProxy implements WebService.WebServiceCategorie 
     if (webServiceCategorie == null)
       _initWebServiceCategorieProxy();
     return webServiceCategorie.newCategorie(nom);
+  }
+  
+  public boolean modifyCategorie(int id, java.lang.String nom) throws java.rmi.RemoteException{
+    if (webServiceCategorie == null)
+      _initWebServiceCategorieProxy();
+    return webServiceCategorie.modifyCategorie(id, nom);
   }
   
   

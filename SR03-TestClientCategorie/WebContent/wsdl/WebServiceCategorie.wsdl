@@ -14,21 +14,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="modifyCategorie">
-    <complexType>
-     <sequence>
-      <element name="id" type="xsd:int"/>
-      <element name="nom" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="modifyCategorieResponse">
-    <complexType>
-     <sequence>
-      <element name="modifyCategorieReturn" type="xsd:boolean"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="getCategorie">
     <complexType>
      <sequence>
@@ -71,6 +56,21 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="modifyCategorie">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+      <element name="nom" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modifyCategorieResponse">
+    <complexType>
+     <sequence>
+      <element name="modifyCategorieReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
  </wsdl:types>
 
@@ -82,17 +82,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="modifyCategorieRequest">
+   <wsdl:message name="delCategorieRequest">
 
-      <wsdl:part element="impl:modifyCategorie" name="parameters">
+      <wsdl:part element="impl:delCategorie" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="delCategorieRequest">
+   <wsdl:message name="modifyCategorieRequest">
 
-      <wsdl:part element="impl:delCategorie" name="parameters">
+      <wsdl:part element="impl:modifyCategorie" name="parameters">
 
       </wsdl:part>
 
@@ -168,18 +168,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="modifyCategorie">
-
-         <wsdl:input message="impl:modifyCategorieRequest" name="modifyCategorieRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:modifyCategorieResponse" name="modifyCategorieResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="getCategorie">
 
          <wsdl:input message="impl:getCategorieRequest" name="getCategorieRequest">
@@ -216,6 +204,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="modifyCategorie">
+
+         <wsdl:input message="impl:modifyCategorieRequest" name="modifyCategorieRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:modifyCategorieResponse" name="modifyCategorieResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="WebServiceCategorieSoapBinding" type="impl:WebServiceCategorie">
@@ -233,24 +233,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="getCategoriesResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="modifyCategorie">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="modifyCategorieRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="modifyCategorieResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -305,6 +287,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="newCategorieResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyCategorie">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyCategorieRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyCategorieResponse">
 
             <wsdlsoap:body use="literal"/>
 

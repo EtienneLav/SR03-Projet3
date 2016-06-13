@@ -28,8 +28,12 @@
 										<th></th>
 										<th style="text-align: left;">Nom</th>
 									</tr>
-									<% String categorie_name = (String) request.getAttribute("nom_categorie");%>
-									<%int categorie_id = (int) request.getAttribute("id_categorie"); %>
+									<%
+										String categorie_name = (String) request.getAttribute("nom_categorie");
+									%>
+									<%
+										int categorie_id = (int) request.getAttribute("id_categorie");
+									%>
 
 									<tr>
 										<td style="border-top: none;">
@@ -43,10 +47,10 @@
 												<label for="inputName" class="sr-only"></label> <input
 													name="name" type="name" class="form-control"
 													id="inputName placeholder="
-													<% out.print(categorie_name); %>" value="<% out.print(categorie_name); %>">
+													<%out.print(categorie_name);%>" value="<%out.print(categorie_name);%>">
 												<input name="id" type="hidden" class="form-control"
-													id="inputId" placeholder="<% out.print(categorie_id); %>"
-													value="<% out.print(categorie_id); %>">
+													id="inputId" placeholder="<%out.print(categorie_id);%>"
+													value="<%out.print(categorie_id);%>">
 											</div>
 										</td>
 									</tr>

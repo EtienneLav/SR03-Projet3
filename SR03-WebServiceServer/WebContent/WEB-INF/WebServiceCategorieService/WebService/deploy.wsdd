@@ -12,10 +12,6 @@
       <parameter name="typeMappingVersion" value="1.2"/>
       <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getCategories" qname="operNS:getCategories" returnQName="retNS:getCategoriesReturn" returnType="rtns:string" soapAction="">
       </operation>
-      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="modifyCategorie" qname="operNS:modifyCategorie" returnQName="retNS:modifyCategorieReturn" returnType="rtns:boolean" soapAction="">
-        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
-        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
-      </operation>
       <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getCategorie" qname="operNS:getCategorie" returnQName="retNS:getCategorieReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:categorie_id" type="tns:int"/>
       </operation>
@@ -25,7 +21,11 @@
       <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="newCategorie" qname="operNS:newCategorie" returnQName="retNS:newCategorieReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
       </operation>
-      <parameter name="allowedMethods" value="modifyCategorie getCategorie getCategories delCategorie newCategorie"/>
+      <operation xmlns:operNS="http://WebService" xmlns:retNS="http://WebService" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="modifyCategorie" qname="operNS:modifyCategorie" returnQName="retNS:modifyCategorieReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+        <parameter xmlns:pns="http://WebService" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="getCategorie modifyCategorie getCategories delCategorie newCategorie"/>
 
   </service>
 </deployment>
