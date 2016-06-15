@@ -2,15 +2,6 @@
 
 Projet n°3 de SR03 : réalisation d'un webservice SOAP en JAVA EE sous Eclipse avec implémentation de deux clients.
 
-
-TODO
-
-- .sql création de la table
-- .sql population de la table
-
-DOING 
-
-
 DONE 
 
 - Gestion des catégories côté server et client
