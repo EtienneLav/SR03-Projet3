@@ -21,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * <br>
@@ -48,64 +49,78 @@ public class Listing_Adding extends HttpServlet {
 	 * @see WebService.WebServiceCategorieProxy
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		WebServiceCategorieProxy categorieProxy = new WebServiceCategorieProxy();
+		/* Récupération de la session depuis la requête */
+		HttpSession session = request.getSession();
 
-		String categorie_id_string = (String) request.getParameter("categorie_id");
+		// empêcher de faire deux fois le même questionnaire par session
+		Boolean is_admin = (Boolean) session.getAttribute("admin");
 
-		// Si on arrive sur cette page après une demande de suppresion
-		if (categorie_id_string != null)
-			categorieProxy.delCategorie((int) Long.valueOf(categorie_id_string).longValue());
-
-		String categories = categorieProxy.getCategories();
-		System.out.println("string " + categories);
-
-		// Tableau à envoyer à la JSP : id x nom
-		HashMap<Integer, String> categories_array = new HashMap<Integer, String>();
-
-		// Traitement XML de toutes les "categorie"
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db = null;
-
-		try {
-			db = dbf.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (is_admin == null || is_admin == false) {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(request, response);
 		}
-		InputSource is = new InputSource();
-		is.setCharacterStream(new StringReader(categories));
 
-		Document doc;
-		try {
-			doc = db.parse(is);
-			System.out.println("teeest " + doc);
-			NodeList nList = doc.getElementsByTagName("categorie");
-			System.out.println(nList.getLength());
+		else {
 
-			for (int temp = 0; temp < nList.getLength(); temp++) {
+			WebServiceCategorieProxy categorieProxy = new WebServiceCategorieProxy();
 
-				Node nNode = nList.item(temp);
+			String categorie_id_string = (String) request.getParameter("categorie_id");
 
-				System.out.println("\nCurrent Element :" + nNode.getNodeName());
+			// Si on arrive sur cette page après une demande de suppresion
+			if (categorie_id_string != null)
+				categorieProxy.delCategorie((int) Long.valueOf(categorie_id_string).longValue());
 
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+			String categories = categorieProxy.getCategories();
+			System.out.println("string " + categories);
 
-					Element eElement = (Element) nNode;
+			// Tableau à envoyer à la JSP : id x nom
+			HashMap<Integer, String> categories_array = new HashMap<Integer, String>();
 
-					System.out.println("Categorie id : " + eElement.getAttribute("id"));
-					System.out.println("Categorie id : " + eElement.getAttribute("nom"));
-					categories_array.put(Integer.parseInt(eElement.getAttribute("id")), eElement.getAttribute("nom"));
+			// Traitement XML de toutes les "categorie"
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = null;
 
-				}
+			try {
+				db = dbf.newDocumentBuilder();
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			InputSource is = new InputSource();
+			is.setCharacterStream(new StringReader(categories));
 
-		// Envoie la hasMap à la JSP
-		request.setAttribute("liste_categories", categories_array);
-		this.getServletContext().getRequestDispatcher("/categorie/liste.jsp").forward(request, response);
+			Document doc;
+			try {
+				doc = db.parse(is);
+				System.out.println("teeest " + doc);
+				NodeList nList = doc.getElementsByTagName("categorie");
+				System.out.println(nList.getLength());
+
+				for (int temp = 0; temp < nList.getLength(); temp++) {
+
+					Node nNode = nList.item(temp);
+
+					System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+						Element eElement = (Element) nNode;
+
+						System.out.println("Categorie id : " + eElement.getAttribute("id"));
+						System.out.println("Categorie id : " + eElement.getAttribute("nom"));
+						categories_array.put(Integer.parseInt(eElement.getAttribute("id")),
+								eElement.getAttribute("nom"));
+
+					}
+				}
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			// Envoie la hasMap à la JSP
+			request.setAttribute("liste_categories", categories_array);
+			this.getServletContext().getRequestDispatcher("/categorie/liste.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -118,14 +133,27 @@ public class Listing_Adding extends HttpServlet {
 	 * 
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Récupère les champs pouvant avoir été modifiés
-		String updated_nom = (String) request.getParameter("name");
-		WebServiceCategorieProxy categorieProxy = new WebServiceCategorieProxy();
+		/* Récupération de la session depuis la requête */
+		HttpSession session = request.getSession();
 
-		// Requete le webservice pour ajouter une catégorie
-		categorieProxy.newCategorie(updated_nom);
+		// empêcher de faire deux fois le même questionnaire par session
+		Boolean is_admin = (Boolean) session.getAttribute("admin");
 
-		// Récupère toutes les catégories pour les afficher
-		doGet(request, response);
+		if (is_admin == null || is_admin == false) {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/erreur.jsp").forward(request, response);
+		}
+
+		else {
+
+			// Récupère les champs pouvant avoir été modifiés
+			String updated_nom = (String) request.getParameter("name");
+			WebServiceCategorieProxy categorieProxy = new WebServiceCategorieProxy();
+
+			// Requete le webservice pour ajouter une catégorie
+			categorieProxy.newCategorie(updated_nom);
+
+			// Récupère toutes les catégories pour les afficher
+			doGet(request, response);
+		}
 	}
 }
